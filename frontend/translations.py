@@ -990,13 +990,21 @@ def get_localized_recommendation(
 ) -> str:
     diff = abs(predicted_price - best_price)
     disp_crop = format_crop(crop, lang)
+    is_rise = predicted_price > best_price
+    is_fall = predicted_price < best_price
 
     if lang == "te":
         if decision == "SELL NOW":
+            if is_fall:
+                trend_msg = f"(ధర ₹{diff:.2f}/కిలో తగ్గే అవకాశం ఉంది)"
+            elif is_rise:
+                trend_msg = f"(స్వల్పంగా ₹{diff:.2f}/కిలో పెరిగే అవకాశం ఉన్నప్పటికీ, నిల్వ నష్టాల దృష్ట్యా ఇప్పుడే అమ్మడం మంచిది)"
+            else:
+                trend_msg = "(ధర స్థిరంగా ఉండే అవకాశం ఉంది)"
             return (
                 f"{quantity:g} కిలోల {disp_crop} కోసం సిఫార్సు చేసిన మార్కెట్ {best_market} ({best_location}), "
                 f"సుమారు {best_distance:.1f} కి.మీ దూరం. ప్రస్తుత ధర ₹{best_price:.2f}/కిలో. "
-                f"3 రోజుల తర్వాత అంచనా ధర ₹{predicted_price:.2f}/కిలో (ధర ₹{diff:.2f}/కిలో తగ్గే అవకాశం ఉంది). "
+                f"3 రోజుల తర్వాత అంచనా ధర ₹{predicted_price:.2f}/కిలో {trend_msg}. "
                 f"కాబట్టి గరిష్ట రాబడి కోసం ఇప్పుడే విక్రయించడం ప్రయోజనకరం."
             )
         elif decision == "WAIT":
@@ -1014,10 +1022,16 @@ def get_localized_recommendation(
             )
     elif lang == "hi":
         if decision == "SELL NOW":
+            if is_fall:
+                trend_msg = f"(भाव ₹{diff:.2f}/किग्रा घटने की संभावना है)"
+            elif is_rise:
+                trend_msg = f"(भाव ₹{diff:.2f}/किग्रा बढ़ने की संभावना के बावजूद, रख-रखाव जोखिमों के कारण अभी बेचना अधिक सुरक्षित है)"
+            else:
+                trend_msg = "(भाव स्थिर रहने का अनुमान है)"
             return (
                 f"{quantity:g} किग्रा {disp_crop} के लिए अनुशंसित मंडी {best_market} ({best_location}) है, "
                 f"लगभग {best_distance:.1f} किमी दूर। वर्तमान भाव ₹{best_price:.2f}/किग्रा है। "
-                f"3 दिन बाद अनुमानित भाव ₹{predicted_price:.2f}/किग्रा है (भाव ₹{diff:.2f}/किग्रा घटने की संभावना है)। "
+                f"3 दिन बाद अनुमानित भाव ₹{predicted_price:.2f}/किग्रा है {trend_msg}। "
                 f"इसलिए बेहतर लाभ के लिए अभी बेचना सबसे उपयुक्त रहेगा।"
             )
         elif decision == "WAIT":
@@ -1035,10 +1049,16 @@ def get_localized_recommendation(
             )
     elif lang == "ta":
         if decision == "SELL NOW":
+            if is_fall:
+                trend_msg = f"(விலை ₹{diff:.2f}/கிலோ குறைய வாய்ப்புள்ளது)"
+            elif is_rise:
+                trend_msg = f"(விலை ₹{diff:.2f}/கிலோ உயர வாய்ப்பிருந்தாலும் சேமிப்பு அபாயங்களால் இப்போதே விற்பது நல்லது)"
+            else:
+                trend_msg = "(விலை சீராக இருக்கும்)"
             return (
                 f"{quantity:g} கிலோ {disp_crop} பயிருக்கு பரிந்துரைக்கப்பட்ட சந்தை {best_market} ({best_location}), "
                 f"சுமார் {best_distance:.1f} கி.மீ தொலைவில் உள்ளது. தற்போதைய விலை ₹{best_price:.2f}/கிலோ. "
-                f"3 நாட்களுக்குப் பிறகு கணிக்கப்பட்ட விலை ₹{predicted_price:.2f}/கிலோ (விலை ₹{diff:.2f}/கிலோ குறைய வாய்ப்புள்ளது). "
+                f"3 நாட்களுக்குப் பிறகு கணிக்கப்பட்ட விலை ₹{predicted_price:.2f}/கிலோ {trend_msg}. "
                 f"எனவே அதிக லாபம் பெற இப்போதே விற்பது நல்லது."
             )
         elif decision == "WAIT":
@@ -1056,10 +1076,16 @@ def get_localized_recommendation(
             )
     elif lang == "kn":
         if decision == "SELL NOW":
+            if is_fall:
+                trend_msg = f"(ದರ ₹{diff:.2f}/ಕೆಜಿ ಇಳಿಕೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ)"
+            elif is_rise:
+                trend_msg = f"(ದರ ₹{diff:.2f}/ಕೆಜಿ ಏರಿಕೆಯಾಗುವ ಸಾಧ್ಯತೆಯಿದ್ದರೂ ಶೇಖರಣಾ ಅಪಾಯ ತಪ್ಪಿಸಲು ಈಗಲೇ ಮಾರಾಟ ಸೂಕ್ತ)"
+            else:
+                trend_msg = "(ದರ ಸ್ಥಿರವಾಗಿರಲಿದೆ)"
             return (
                 f"{quantity:g} ಕೆಜಿ {disp_crop} ಗಾಗಿ ಶಿಫಾರಸು ಮಾಡಿದ ಮಾರುಕಟ್ಟೆ {best_market} ({best_location}), "
                 f"ಸುಮಾರು {best_distance:.1f} ಕಿ.ಮೀ ದೂರದಲ್ಲಿದೆ. ಪ್ರಸ್ತುತ ದರ ₹{best_price:.2f}/ಕೆಜಿ. "
-                f"3 ದಿನಗಳ ನಂತರ ಅಂದಾಜು ದರ ₹{predicted_price:.2f}/ಕೆಜಿ (ದರ ₹{diff:.2f}/ಕೆಜಿ ಇಳಿಕೆಯಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ). "
+                f"3 ದಿನಗಳ ನಂತರ ಅಂದಾಜು ದರ ₹{predicted_price:.2f}/ಕೆಜಿ {trend_msg}. "
                 f"ಆದ್ದರಿಂದ ಗರಿಷ್ಠ ಲಾಭಕ್ಕಾಗಿ ಈಗಲೇ ಮಾರಾಟ ಮಾಡುವುದು ಸೂಕ್ತ."
             )
         elif decision == "WAIT":
@@ -1077,10 +1103,16 @@ def get_localized_recommendation(
             )
     elif lang == "mr":
         if decision == "SELL NOW":
+            if is_fall:
+                trend_msg = f"(किंमत ₹{diff:.2f}/किलो कमी होण्याची शक्यता)"
+            elif is_rise:
+                trend_msg = f"(किंमत ₹{diff:.2f}/किलो वाढण्याची शक्यता असली तरी साठवणूक जोखीम टाळण्यासाठी आत्ताच विक्री योग्य)"
+            else:
+                trend_msg = "(किंमत स्थिर राहण्याची शक्यता)"
             return (
                 f"{quantity:g} किलो {disp_crop} साठी शिफारस केलेली बाजारपेठ {best_market} ({best_location}) आहे, "
                 f"अंदाजे {best_distance:.1f} किमी अंतरावर. सध्याचा दर ₹{best_price:.2f}/किलो आहे. "
-                f"3 दिवसांनंतरचा अंदाजित दर ₹{predicted_price:.2f}/किलो आहे (किंमत ₹{diff:.2f}/किलो कमी होण्याची शक्यता). "
+                f"3 दिवसांनंतरचा अंदाजित दर ₹{predicted_price:.2f}/किलो आहे {trend_msg}. "
                 f"म्हणून चांगल्या परताव्यासाठी आत्ताच विक्री करणे योग्य ठरेल."
             )
         elif decision == "WAIT":
@@ -1098,12 +1130,18 @@ def get_localized_recommendation(
             )
     else:
         if decision == "SELL NOW":
+            if is_fall:
+                trend_msg = f"The model expects the price to decrease by ₹{diff:.2f}/kg."
+            elif is_rise:
+                trend_msg = f"Although the price may slightly increase by ₹{diff:.2f}/kg, post-harvest holding risks and immediate cash realization make selling now the recommended choice."
+            else:
+                trend_msg = "The model expects the price to remain stable."
             return (
                 f"For {quantity:g} kg of {crop}, the recommended market is {best_market}, "
                 f"located in {best_location}, approximately {best_distance:.1f} km away, "
                 f"with a current price of ₹{best_price:.2f}/kg. "
                 f"The predicted price after 3 days is ₹{predicted_price:.2f}/kg. "
-                f"The model expects the price to decrease by ₹{diff:.2f}/kg. "
+                f"{trend_msg} "
                 f"Therefore, selling now may help maximize current returns."
             )
         elif decision == "WAIT":
@@ -1396,7 +1434,12 @@ def get_localized_farmer_advice(
     else:
         if decision == "SELL NOW":
             action_text = f"Sell your {crop} now at {best_market}. The current price of ₹{current_price:.2f}/kg is attractive."
-            why_text = f"The predicted price is ₹{predicted_price:.2f}/kg, so waiting may not provide a significant advantage."
+            if price_diff < 0:
+                why_text = f"The model expects the price to drop by ₹{abs(price_diff):.2f}/kg ({abs(pct_change):.1f}%). Selling now protects against value loss."
+            elif price_diff > 0:
+                why_text = f"The predicted price is ₹{predicted_price:.2f}/kg. Even with a minor price change of ₹{price_diff:.2f}/kg, holding risks make selling now the safer choice."
+            else:
+                why_text = f"The predicted price is ₹{predicted_price:.2f}/kg. Price is expected to remain steady, so selling now guarantees current returns."
         elif decision == "WAIT":
             action_text = f"Consider waiting before selling your {crop}, provided you have safe storage and can manage additional holding costs."
             why_text = f"The system predicts the price may increase by {pct_change:.1f}% to approximately ₹{predicted_price:.2f}/kg."

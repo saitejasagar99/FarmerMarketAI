@@ -583,6 +583,16 @@ def calculate_scores(state: MarketState):
     elif holding_spoilage["is_severe_spoilage"]:
         wait_score = min(wait_score, 10)
 
+    # Spoilage financial factor: If volume loss + markdown outweighs price rise
+    if price_change_percent > 0 and holding_spoilage["volume_loss_pct"] > 0:
+        holding_factor = (
+            (1.0 - holding_spoilage["volume_loss_pct"] / 100.0) *
+            (1.0 - holding_spoilage["quality_markdown_pct"] / 100.0) *
+            (1.0 + price_change_percent / 100.0)
+        )
+        if holding_factor < 0.98:
+            wait_score = min(wait_score, 25)
+
     # --------------------------------------------------------
     # KEEP SCORE BETWEEN 0 AND 100
     # --------------------------------------------------------
@@ -680,29 +690,37 @@ def make_decision(state):
                 )
             }
 
-    # High perishables need a higher price jump to offset spoilage and weight loss
-    wait_threshold = 8.0 if crop_risk["perishability"] == "Very High" else 5.0
+    # 3. SCORE-ALIGNED DECISION: Directly synchronized with calculate_scores
+    wait_score = state.get("wait_score", 50)
+    sell_now_score = state.get("sell_now_score", 50)
 
-    if price_change_percent >= wait_threshold:
+    if wait_score > sell_now_score:
         decision = "WAIT"
         reason = (
-            f"Price may increase by approximately "
-            f"{price_change_percent:.1f}%, offsetting holding risks."
+            f"Price is predicted to increase by approximately "
+            f"{price_change_percent:.1f}% (+₹{predicted_price - current_price:.2f}/kg). "
+            f"{state['crop']} has favorable storage durability. Waiting is expected to provide higher net returns."
         )
 
-    elif price_change_percent <= -3:
+    elif sell_now_score > wait_score:
         decision = "SELL NOW"
-        reason = (
-            f"Price may decrease by approximately "
-            f"{abs(price_change_percent):.1f}%. Sell now to protect profits."
-        )
+        if price_change_percent < 0:
+            reason = (
+                f"Price is predicted to decrease by approximately "
+                f"{abs(price_change_percent):.1f}% (-₹{abs(predicted_price - current_price):.2f}/kg). "
+                f"Selling now protects against price decline."
+            )
+        else:
+            reason = (
+                f"Holding risks, perishability factors, and immediate cash realization make selling now the recommended choice."
+            )
 
     else:
-        decision = "SELL NOW"
-        if crop_risk["perishability"] == "Very High":
-            reason = "Expected price increase is too small to risk crop rotting and weight loss. Sell now."
-        else:
-            reason = "Expected price change is small, so selling now is recommended."
+        decision = "NEUTRAL"
+        reason = (
+            f"Expected price change is minimal. "
+            f"Consider selling based on immediate cash requirements, storage availability, and local mandi conditions."
+        )
 
     return {
         "decision": decision,
@@ -736,12 +754,23 @@ def generate_recommendation(state: MarketState):
     price_difference = (
         predicted_price - best_price
     )
+    price_change_percent = (
+        (price_difference / best_price * 100)
+        if best_price > 0 else 0
+    )
 
     # ========================================================
     # SELL NOW
     # ========================================================
 
     if decision == "SELL NOW":
+
+        if price_difference < 0:
+            trend_text = f"The model expects the price to decrease by ₹{abs(price_difference):.2f}/kg ({abs(price_change_percent):.1f}%). "
+        elif price_difference > 0:
+            trend_text = f"Although a slight price change of ₹{price_difference:.2f}/kg is possible, holding risks and immediate cash realization make selling now the safer choice. "
+        else:
+            trend_text = "The model expects prices to remain steady. "
 
         recommendation = (
 
@@ -760,9 +789,7 @@ def generate_recommendation(state: MarketState):
             f"The predicted price after 3 days is "
             f"₹{predicted_price:.2f}/kg. "
 
-            f"The model expects the price to "
-            f"decrease by "
-            f"₹{abs(price_difference):.2f}/kg. "
+            f"{trend_text}"
 
             f"Therefore, selling now may help "
             f"maximize current returns."
@@ -774,6 +801,11 @@ def generate_recommendation(state: MarketState):
 
     elif decision == "WAIT":
 
+        if price_difference > 0:
+            trend_text = f"The model expects the price to increase by ₹{price_difference:.2f}/kg ({price_change_percent:+.1f}%). "
+        else:
+            trend_text = "The model expects favorable market conditions over the next 3 days. "
+
         recommendation = (
 
             f"For {quantity:g} kg of {crop}, "
@@ -791,9 +823,7 @@ def generate_recommendation(state: MarketState):
             f"The predicted price after 3 days is "
             f"₹{predicted_price:.2f}/kg. "
 
-            f"The model expects the price to "
-            f"increase by "
-            f"₹{price_difference:.2f}/kg. "
+            f"{trend_text}"
 
             f"Therefore, waiting may provide "
             f"a better selling price."
