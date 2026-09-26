@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  farmer-market-ai:
+    build: .
+    ports:
+      - "8501:8501"
+      - "8000:8000"
+    environment:
+      - PORT=8501
+      - BACKEND_PORT=8000
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: unless-stopped

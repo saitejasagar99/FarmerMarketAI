@@ -1,0 +1,320 @@
+<USER_REQUEST>
+# 🌾 Farmer-to-Market Intelligence — Professional UI Redesign
+
+Act as a senior UI/UX designer and Python Streamlit developer. I have an existing, working project called **Farmer-to-Market Intelligence**.
+
+I want you to redesign its frontend to look like a modern, professional, attractive, hackathon-ready agricultural technology platform.
+
+## 1. MOST IMPORTANT: Preserve Existing Functionality
+
+Before making any changes:
+
+1. Inspect the complete project structure.
+2. Read the existing Streamlit frontend code, especially `frontend/app.py`.
+3. Understand how the frontend communicates with the FastAPI backend and LangGraph agents.
+4. Identify all existing features, API endpoints, request parameters, response fields, and session state variables.
+5. Preserve all working functionality.
+
+**Do not rebuild the project from scratch. Do not modify the backend, database, AI agents, ML models, or API endpoints unless absolutely necessary for frontend compatibility.**
+
+Make the changes primarily in the frontend.
+
+Do not remove any existing features, including:
+
+* Farmer input form.
+* Crop selection and quantity input.
+* Crop quality and harvest date.
+* Farmer location.
+* Market price comparison.
+* AI-powered recommendations.
+* Sell Now vs Wait scores.
+* Price prediction.
+* Market navigation and distance information.
+* Voice-related features, if present.
+* Existing charts and dashboards.
+
+If a feature already exists, improve its presentation rather than creating a duplicate.
+
+## 2. Design Style
+
+Create a premium agricultural technology dashboard with the following visual identity:
+
+* Primary color: Forest green (`#123B2A`).
+* Secondary color: Fresh green (`#2E7D4F`).
+* Accent color: Light green (`#B7E4C7`).
+* Background: Warm off-white (`#F7F8F3`).
+* Cards: White with subtle borders and soft shadows.
+* Text: Dark green and charcoal for readability.
+
+Use:
+
+* Modern typography.
+* Consistent spacing.
+* Rounded cards.
+* Clean icons.
+* Professional charts.
+* Clear visual hierarchy.
+* Responsive layouts for desktop and mobile.
+
+The interface should feel like a real agricultural SaaS product, not a basic college project.
+
+Avoid excessive emojis, distracting animations, too many colors, and unnecessary decorative elements.
+
+## 3. Professional Header
+
+Create a clean header containing:
+
+* A small agricultural logo or sprout icon.
+* Application name: Farmer Market Intelligence.
+* Subtitle: “Your harvest. Your market. Your decision.”
+* A compact market-status or data-freshness indicator, only when supported by actual data.
+* Optional language selector, if practical.
+
+Keep the header elegant and compact.
+
+## 4. Dashboard Layout
+
+Redesign the homepage into a clean dashboard.
+
+### Welcome section
+
+Display a heading:
+
+“Make smarter decisions for your harvest.”
+
+Add a short description explaining that farmers can compare market prices, estimate earnings, and explore selling options.
+
+### Farmer input card
+
+Create a visually attractive form with clearly labeled fields:
+
+* Crop selection.
+* Quantity in kilograms.
+* Crop quality.
+* Harvest date.
+* Farmer location.
+
+Arrange the fields in a responsive grid.
+
+Use appropriate icons and helpful descriptions.
+
+Add a prominent green button:
+
+“Analyze My Harvest”
+
+The button must continue to use the existing backend integration and existing functionality.
+
+Show validation messages clearly and avoid unnecessary clutter.
+
+## 5. Market Overview Cards
+
+After the farmer submits the form, display attractive metric cards for available information, such as:
+
+1. Current market price.
+2. Best available market.
+3. Estimated revenue.
+4. Distance to the selected market.
+
+Use the actual values returned by the existing application.
+
+Display appropriate units such as ₹/kg, ₹, and km.
+
+Do not invent market prices, distances, or revenue figures.
+
+If information is unavailable, show “Not available” instead of making up values.
+
+## 6. Market Comparison Section
+
+Create a professional market comparison interface.
+
+Display available markets in a clean table or card layout.
+
+Include relevant existing fields such as:
+
+* Market name.
+* Price per kg.
+* Location.
+* Distance.
+* Estimated selling revenue.
+
+Highlight the highest available price without hiding other markets.
+
+Use subtle visual indicators to make comparisons easier.
+
+Add sorting or filtering only if it can be implemented without breaking existing functionality.
+
+Make the section easy to understand for farmers with limited technical knowledge.
+
+## 7. Attractive Charts
+
+Improve the existing charts using Streamlit's supported charting capabilities or the charting library already installed in the project.
+
+Create:
+
+### Market price comparison chart
+
+* Compare available market prices.
+* Use readable labels.
+* Display prices in ₹/kg.
+* Highlight the best available price.
+
+### Price prediction chart
+
+* Display historical and predicted prices only when the underlying data supports them.
+* Clearly distinguish actual and predicted values.
+* Include dates and appropriate units.
+* Do not create fake historical data or forecasts.
+
+### Sell Now vs Wait visualization
+
+* Create a visually appealing comparison using the existing scores.
+* Use a horizontal bar chart, gauge, or clean comparison cards.
+* Clearly label these as decision-support scores, not guaranteed probabilities.
+* Explain the meaning of the scores.
+
+Do not add charts that display misleading or fabricated information.
+
+## 8. AI Recommendation Card
+
+Make the final recommendation one of the most visually prominent sections.
+
+Display:
+
+* Existing recommendation: Sell Now or Wait.
+* Sell Now score.
+* Wait score.
+* Predicted price change, if available.
+* Expected revenue comparison, if available.
+* Important factors behind the recommendation.
+* A short, understandable explanation.
+
+Use green and neutral visual indicators appropriately.
+
+If the model does not provide a confidence score, do not invent one.
+
+If the recommendation is uncertain, communicate that clearly.
+
+Make the explanation simple enough for a farmer to understand.
+
+## 9. Market Navigation
+
+Improve the existing market navigation section.
+
+Display:
+
+* Selected market name.
+* Distance from the farmer's location.
+* Existing navigation button or map link.
+* A clean map or location section if supported by the current application.
+
+Keep the current navigation functionality working.
+
+Do not generate fake map coordinates or distances.
+
+## 10. Sidebar and Navigation
+
+If the current application uses a sidebar, redesign it with a clean, compact style.
+
+Use clearly named sections, such as:
+
+* Dashboard.
+* Market Comparison.
+* Price Forecast.
+* AI Recommendation.
+* About.
+
+Only include navigation items that correspond to existing functionality or can be safely implemented.
+
+Avoid creating multiple pages unnecessarily if the current application is a single-page dashboard.
+
+## 11. Streamlit Implementation Requirements
+
+Use Streamlit's supported features and the libraries already available in the project.
+
+You may use:
+
+* `st.set_page_config()`
+* `st.columns()`
+* `st.container()`
+* `st.metric()`
+* `st.tabs()`
+* `st.expander()`
+* `st.sidebar`
+* `st.markdown()` with carefully scoped CSS.
+* Existing charting libraries.
+
+Use custom CSS only where it genuinely improves the design.
+
+Do not use unsupported browser APIs or fragile JavaScript hacks.
+
+Avoid excessive full-page reruns and preserve existing `st.session_state` behavior.
+
+Ensure that forms, buttons, charts, and API calls continue to work correctly.
+
+## 12. Error Handling and User Experience
+
+Improve the presentation of:
+
+* Loading states.
+* API connection errors.
+* Empty market results.
+* Invalid farmer inputs.
+* Missing prediction data.
+* Missing recommendation fields.
+
+Use helpful messages instead of raw Python tracebacks.
+
+Do not silently suppress important errors.
+
+Keep the application usable even if some optional information is unavailable.
+
+## 13. Performance and Code Quality
+
+* Keep the code readable and maintainable.
+* Avoid unnecessary dependencies.
+* Reuse existing functions wherever possible.
+* Do not duplicate API requests.
+* Avoid loading large datasets repeatedly when caching is appropriate.
+* Preserve existing API URLs and request structures.
+* Keep all existing working functionality intact.
+
+## 14. Final Testing
+
+After implementing the redesign:
+
+1. Run the Streamlit application.
+2. Check for Python syntax and import errors.
+3. Verify that the farmer input form works.
+4. Verify that the frontend still communicates with the existing FastAPI backend.
+5. Test market comparison.
+6. Test AI recommendations and Sell Now vs Wait visualization.
+7. Test price prediction charts.
+8. Test market navigation.
+9. Test missing or unavailable data.
+10. Check desktop and mobile layouts.
+
+Do not claim that something has been tested unless you actually tested it.
+
+## 15. Final Deliverables
+
+When finished, provide:
+
+1. A summary of the UI changes.
+2. The exact files modified.
+3. Any new dependencies, if necessary.
+4. Commands to run the application in VS Code.
+5. A list of features verified to be working.
+6. Any remaining issues that require my attention.
+
+## FINAL INSTRUCTION
+
+**Make the existing Farmer-to-Market Intelligence application visually impressive, modern, professional, and easy to use while preserving all working functionality.**
+
+Prioritize excellent UI/UX, clear data presentation, and a polished hackathon demonstration.
+
+Inspect the code first, then implement the redesign directly in my existing project files. Do not merely provide suggestions or sample code.:
+
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-18T12:19:36+05:30.
+</ADDITIONAL_METADATA>

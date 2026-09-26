@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  body { background: transparent; padding: 2px; overflow: hidden; }
+  
+  .voice-card {
+    background: #ffffff;
+    border: 2px solid #10b981;
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+    text-align: center;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #065f46;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lang-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: #047857;
+    background: #dcfce7;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid #86efac;
+  }
+
+  .mic-button {
+    width: 100%;
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .mic-button:hover {
+    background: linear-gradient(135deg, #047857 0%, #059669 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(5, 150, 105, 0.38);
+  }
+
+  .mic-button.recording {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    box-shadow: 0 0 24px rgba(220, 38, 38, 0.65);
+    animation: mic-pulse 1.2s infinite ease-in-out;
+  }
+
+  .mic-button.processing {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+    cursor: wait;
+  }
+
+  @keyframes mic-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(220, 38, 38, 0.4); }
+    50% { transform: scale(1.025); box-shadow: 0 0 28px rgba(220, 38, 38, 0.75); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(220, 38, 38, 0.4); }
+  }
+
+  .timer-container {
+    display: none;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #dc2626;
+    margin-bottom: 5px;
+  }
+
+  .timer-bar-bg {
+    width: 100%;
+    height: 6px;
+    background: #fee2e2;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .timer-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef4444 100%);
+    transition: width 1s linear;
+  }
+
+  .status-bar {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+    min-height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .live-box {
+    display: none;
+    margin-top: 12px;
+    background: #f0fdf4;
+    border: 1.5px solid #86efac;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: left;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .live-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #166534;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .live-query {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.4;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+<div class="voice-card">
+  <div class="card-header">
+    <span class="card-title">
+      🎙️ <span id="hdrTitle">Farmer Voice Assistant (Speak in Your Language)</span>
+    </span>
+    <span id="langBadge" class="lang-badge">🌾 తెలుగు (Telugu)</span>
+  </div>
+
+  <button id="micBtn" class="mic-button" onclick="toggleSpeech()">
+    <span id="micIcon" style="font-size: 22px;">🎙️</span>
+    <span id="micText">మాట్లాడండి (Tap to Speak in Telugu)</span>
+  </button>
+
+  <div id="timerContainer" class="timer-container">
+    <div class="timer-header">
+      <span id="timerLabel">🔴 వింటున్నాం... నిదానంగా మాట్లాడండి (25s సమయం)</span>
+      <span id="timerCountdown">⏱️ 25s</span>
+    </div>
+    <div class="timer-bar-bg">
+      <div id="timerBar" class="timer-bar-fill"></div>
+    </div>
+  </div>
+
+  <div id="statusBar" class="status-bar">
+    💡 బటన్ నొక్కి మీ పంట, పరిమాణం, ఊరు వివరాలు చెప్పండి (25-30 సెకన్లు సమయం)
+  </div>
+
+  <div id="liveBox" class="live-box">
+    <div class="live-label">🗣️ విన్న మాట (Recognized Voice Query):</div>
+    <div id="liveText" class="live-query"></div>
+  </div>
+</div>
+
+<script>
+function sendMessageToStreamlit(type, data) {
+  window.parent.postMessage({
+    isStreamlitMessage: true,
+    type: type,
+    ...data
+  }, "*");
+}
+
+function setComponentValue(value) {
+  sendMessageToStreamlit("streamlit:setComponentValue", { value: value });
+}
+
+function setFrameHeight(height) {
+  sendMessageToStreamlit("streamlit:setFrameHeight", { height: height });
+}
+
+const TOTAL_SPEAK_SECONDS = 28; // Full 28 seconds given to the farmer
+
+const LANG_CONFIG = {
+  te: {
+    bcp: "te-IN",
+    badge: "🌾 తెలుగు (Telugu)",
+    btnIdle: "🎙️ మాట్లాడండి (Tap to Speak in Telugu)",
+    btnListening: "🛑 పూర్తయింది (Tap when Done)",
+    btnProcessing: "⚡ మార్కెట్ ధరలను లెక్కిస్తున్నాం... (Analyzing...)",
+    helpIdle: "💡 బటన్ నొక్కి మీ పంట, పరిమాణం, ఊరు వివరాలు చెప్పండి (నిదానంగా 25-30 సెకన్లు మాట్లాడవచ్చు)",
+    timerLabel: "🔴 వింటున్నాం... నిదానంగా వివరాలు చెప్పండి:",
+    helpCaptured: "✅ మాట వినబడింది! నేరుగా మార్కెట్ ధరలను విశ్లేషిస్తున్నాం...",
+    liveLabel: "🗣️ విన్న మాట (Recognized Voice Query):"
+  },
+  hi: {
+    bcp: "hi-IN",
+    badge: "🌾 हिन्दी (Hindi)",
+    btnIdle: "🎙️ बोलिए (Tap to Speak in Hindi)",
+    btnListening: "🛑 बोलना समाप्त (Tap when Done)",
+    btnProcessing: "⚡ मंडी भाव की जांच हो रही है... (Analyzing...)",
+    helpIdle: "💡 बटन दबाएं और फसल, मात्रा व मंडी का नाम आराम से बोलें (25-30 सेकंड का समय)",
+    timerLabel: "🔴 सुन रहे हैं... आराम से अपनी बात कहें:",
+    helpCaptured: "✅ आवाज पहचान ली गई! तुरंत मंडी भाव का विश्लेषण हो रहा है...",
+    liveLabel: "🗣️ बोली गई बात (Recognized Voice Query):"
+  },
+  en: {
+    bcp: "en-IN",
+    badge: "🌐 English",
+    btnIdle: "🎙️ Tap to Speak in English",
+    btnListening: "🛑 Finished Speaking (Tap when Done)",
+    btnProcessing: "⚡ Analyzing Market Prices Directly...",
+    helpIdle: "💡 Tap to speak your crop, quantity & town (Take your time, 25-30s provided)",
+    timerLabel: "🔴 Listening... Speak at your own pace:",
+    helpCaptured: "✅ Voice recognized! Directly analyzing market prices...",
+    liveLabel: "🗣️ Recognized Voice Query:"
+  },
+  ta: {
+    bcp: "ta-IN",
+    badge: "🌾 தமிழ் (Tamil)",
+    btnIdle: "🎙️ பேசுங்கள் (Tap to Speak)",
+    btnListening: "🛑 முடிந்தது (Tap when Done)",
+    btnProcessing: "⚡ சந்தை விலைகளை ஆய்வு செய்கிறது...",
+    helpIdle: "💡 பொத்தானைத் தட்டி பயிர், அளவு, ஊர் சொல்லுங்கள் (25 வினாடிகள்)",
+    timerLabel: "🔴 கேட்கிறது... அமைதியாக பேசுங்கள்:",
+    helpCaptured: "✅ குரல் பதிவு செய்யப்பட்டது!",
+    liveLabel: "🗣️ பேசிய விவரம்:"
+  },
+  kn: {
+    bcp: "kn-IN",
+    badge: "🌾 ಕನ್ನಡ (Kannada)",
+    btnIdle: "🎙️ ಮಾತನಾಡಿ (Tap to Speak)",
+    btnListening: "🛑 ಮುಕ್ತಾಯ (Tap when Done)",
+    btnProcessing: "⚡ ಮಾರುಕಟ್ಟೆ ದರಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...",
+    helpIdle: "💡 ಬಟನ್ ಒತ್ತಿ ಬೆಳೆ, ಪ್ರಮಾಣ, ಊರು ಮಾತನಾಡಿ (25 ಸೆಕೆಂಡುಗಳು)",
+    timerLabel: "🔴 ಆಲಿಸುತ್ತಿದೆ... ನಿಧಾನವಾಗಿ ಮಾತನಾಡಿ:",
+    helpCaptured: "✅ ಧ್ವನಿ ಗುರುತಿಸಲಾಗಿದೆ!",
+    liveLabel: "🗣️ ಗುರುತಿಸಲಾದ ಮಾತು:"
+  },
+  mr: {
+    bcp: "mr-IN",
+    badge: "🌾 मराठी (Marathi)",
+    btnIdle: "🎙️ बोला (Tap to Speak)",
+    btnListening: "🛑 बोलणे पूर्ण (Tap when Done)",
+    btnProcessing: "⚡ बाजारभावाचे विश्लेषण सुरू आहे...",
+    helpIdle: "💡 बटण दाबा आणि पीक, प्रमाण व गाव सांगा (25 सेकंद वेळ)",
+    timerLabel: "🔴 ऐकत आहे... सावकाश बोला:",
+    helpCaptured: "✅ आवाज ओळखला!",
+    liveLabel: "🗣️ ओळखलेला आवाज:"
+  }
+};
+
+let currentLang = "te";
+let recognition = null;
+let isRecording = false;
+let capturedText = "";
+let secondsLeft = TOTAL_SPEAK_SECONDS;
+let countdownTimer = null;
+let silenceTimer = null;
+let userManuallyStopped = false;
+
+function applyLanguage(lang) {
+  currentLang = LANG_CONFIG[lang] ? lang : "te";
+  const cfg = LANG_CONFIG[currentLang];
+  document.getElementById("langBadge").textContent = cfg.badge;
+  if (!isRecording) {
+    const btn = document.getElementById("micBtn");
+    btn.className = "mic-button";
+    document.getElementById("micIcon").textContent = "🎙️";
+    document.getElementById("micText").textContent = cfg.btnIdle;
+    document.getElementById("statusBar").textContent = cfg.helpIdle;
+  }
+}
+
+if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+  const SpeechConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechConstructor();
+  
+  // CRITICAL: continuous = true allows the farmer to take natural pauses without cutting off!
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  recognition.onstart = function() {
+    isRecording = true;
+    userManuallyStopped = false;
+    capturedText = "";
+    secondsLeft = TOTAL_SPEAK_SECONDS;
+
+    const cfg = LANG_CONFIG[currentLang];
+    const btn = document.getElementById("micBtn");
+    btn.className = "mic-button recording";
+    document.getElementById("micIcon").textContent = "🔴";
+    document.getElementById("micText").textContent = cfg.btnListening + " • " + secondsLeft + "s";
+    
+    // Show countdown timer bar
+    const timerContainer = document.getElementById("timerContainer");
+    timerContainer.style.display = "block";
+    document.getElementById("timerLabel").textContent = cfg.timerLabel;
+    document.getElementById("timerCountdown").textContent = "⏱️ " + secondsLeft + "s";
+    document.getElementById("timerBar").style.width = "100%";
+
+    document.getElementById("statusBar").innerHTML = `<span class="spinner"></span> ` + cfg.timerLabel;
+    setFrameHeight(230);
+
+    // Clear any previous timers
+    if (countdownTimer) clearInterval(countdownTimer);
+    if (silenceTimer) clearTimeout(silenceTimer);
+
+    // 1-second countdown clock giving 25-30 full seconds
+    countdownTimer = setInterval(function() {
+      secondsLeft--;
+      if (secondsLeft >= 0) {
+        document.getElementById("timerCountdown").textContent = "⏱️ " + secondsLeft + "s";
+        const pct = (secondsLeft / TOTAL_SPEAK_SECONDS) * 100;
+        document.getElementById("timerBar").style.width = pct + "%";
+        document.getElementById("micText").textContent = cfg.btnListening + " • " + secondsLeft + "s";
+      }
+      if (secondsLeft <= 0) {
+        clearInterval(countdownTimer);
+        finishRecordingAndAnalyze();
+      }
+    }, 1000);
+  };
+
+  recognition.onresult = function(event) {
+    let allFinal = "";
+    let interim = "";
+    for (let i = 0; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        allFinal += event.results[i][0].transcript + " ";
+      } else {
+        interim += event.results[i][0].transcript;
+      }
+    }
+    capturedText = allFinal.trim();
+    const currentSpoken = (capturedText + " " + interim).trim();
+
+    if (currentSpoken) {
+      const detected = detectScriptLanguage(currentSpoken);
+      if (detected && detected !== currentLang && LANG_CONFIG[detected]) {
+        currentLang = detected;
+        const cfg = LANG_CONFIG[currentLang];
+        document.getElementById("langBadge").innerHTML = cfg.badge + ' <span style="font-size:10px; color:#047857; font-weight:700;">(Auto)</span>';
+      }
+      const cfg = LANG_CONFIG[currentLang];
+      const liveBox = document.getElementById("liveBox");
+      liveBox.style.display = "block";
+      document.querySelector(".live-label").textContent = cfg.liveLabel;
+      document.getElementById("liveText").textContent = currentSpoken;
+      setFrameHeight(275);
+
+      // Smart silence detector: if user has spoken substantial info and pauses for 5.5 seconds, auto-finalize!
+      if (silenceTimer) clearTimeout(silenceTimer);
+      if (currentSpoken.length >= 6) {
+        silenceTimer = setTimeout(function() {
+          if (isRecording) {
+            finishRecordingAndAnalyze();
+          }
+        }, 5500); // 5.5 seconds of silence allows long natural farmer pauses without cut-off
+      }
+    }
+  };
+
+  recognition.onerror = function(event) {
+    console.warn("SpeechRecognition notice:", event.error);
+    if (event.error === "no-speech") {
+      // Don't kill session on brief quiet, keep countdown going
+      return;
+    }
+    if (event.error !== "aborted") {
+      document.getElementById("statusBar").textContent = "⚠️ Mic notice: " + event.error;
+    }
+  };
+
+  recognition.onend = function() {
+    // If the browser unexpectedly ends recognition while time remains and user didn't tap stop:
+    if (isRecording && !userManuallyStopped && secondsLeft > 2) {
+      try {
+        recognition.start();
+        return;
+      } catch(e) {
+        console.warn("Recognition restart caught:", e);
+      }
+    }
+
+    if (isRecording) {
+      finishRecordingAndAnalyze();
+    }
+  };
+} else {
+  document.getElementById("micBtn").disabled = true;
+  document.getElementById("micBtn").style.opacity = "0.6";
+  document.getElementById("statusBar").innerHTML = "⚠️ Please open in Google Chrome, Microsoft Edge, or Android Chrome for live voice.";
+}
+
+function stopRecordingUI() {
+  isRecording = false;
+  userManuallyStopped = true;
+  if (countdownTimer) clearInterval(countdownTimer);
+  if (silenceTimer) clearTimeout(silenceTimer);
+  
+  document.getElementById("timerContainer").style.display = "none";
+
+  const cfg = LANG_CONFIG[currentLang];
+  const btn = document.getElementById("micBtn");
+  btn.className = "mic-button";
+  document.getElementById("micIcon").textContent = "🎙️";
+  document.getElementById("micText").textContent = cfg.btnIdle;
+  document.getElementById("statusBar").textContent = cfg.helpIdle;
+  setFrameHeight(200);
+}
+
+function toggleSpeech() {
+  if (!recognition) return;
+  if (isRecording) {
+    // Farmer explicitly tapped when done speaking!
+    userManuallyStopped = true;
+    finishRecordingAndAnalyze();
+  } else {
+    userManuallyStopped = false;
+    capturedText = "";
+    try {
+      const cfg = LANG_CONFIG[currentLang];
+      recognition.lang = cfg.bcp;
+      recognition.start();
+    } catch(e) {
+      console.warn("Recognition start error:", e);
+    }
+  }
+}
+
+function finishRecordingAndAnalyze() {
+  if (countdownTimer) clearInterval(countdownTimer);
+  if (silenceTimer) clearTimeout(silenceTimer);
+  isRecording = false;
+  userManuallyStopped = true;
+
+  try { recognition.stop(); } catch(e) {}
+
+  document.getElementById("timerContainer").style.display = "none";
+
+  const finalSpoken = (capturedText || document.getElementById("liveText").textContent || "").trim();
+  if (finalSpoken) {
+    triggerDirectAnalysis(finalSpoken);
+  } else {
+    stopRecordingUI();
+  }
+}
+
+function detectScriptLanguage(text) {
+  if (!text) return currentLang || "te";
+  // Telugu Unicode script
+  if (/[\u0C00-\u0C7F]/.test(text)) return "te";
+  // Tamil Unicode script
+  if (/[\u0B80-\u0BFF]/.test(text)) return "ta";
+  // Kannada Unicode script
+  if (/[\u0C80-\u0CFF]/.test(text)) return "kn";
+  // Devanagari Unicode script (Hindi vs Marathi)
+  if (/[\u0900-\u097F]/.test(text)) {
+    if (text.includes("ळ") || /[\u0933]/.test(text)) return "mr";
+    const mrWords = ["आहे", "नाही", "शेतकरी", "कांदा", "बाजार", "रुपये", "पाहिजे", "कसा", "गाव", "सांगा", "करा", "भावात", "पोती"];
+    for (let i = 0; i < mrWords.length; i++) {
+      if (text.includes(mrWords[i])) return "mr";
+    }
+    return "hi";
+  }
+  // Romanized keywords detection
+  const lower = text.toLowerCase();
+  if (/\b(biyyam|vaddlu|patti|kandulu|ammali|jonna|mirchi)\b/.test(lower)) return "te";
+  if (/\b(kisan|tamatar|chawal|dhan|kapas|bechna|mandi|bhav)\b/.test(lower)) return "hi";
+  if (/\b(arisi|thakkali|vengayam|paruthi|vilai)\b/.test(lower)) return "ta";
+  if (/\b(akki|togari|bele|irulli|dara)\b/.test(lower)) return "kn";
+  if (/\b(kanda|bajar|ahe|paje|bhavat|rupaye)\b/.test(lower)) return "mr";
+
+  return currentLang || "en";
+}
+
+function triggerDirectAnalysis(text) {
+  const detected = detectScriptLanguage(text);
+  if (detected && detected !== currentLang && LANG_CONFIG[detected]) {
+    currentLang = detected;
+  }
+  const cfg = LANG_CONFIG[currentLang];
+  const btn = document.getElementById("micBtn");
+  btn.className = "mic-button processing";
+  document.getElementById("micIcon").textContent = "⚡";
+  document.getElementById("micText").textContent = cfg.btnProcessing;
+  document.getElementById("statusBar").innerHTML = `<span class="spinner"></span> ` + cfg.helpCaptured;
+
+  setComponentValue({
+    text: text,
+    detected_lang: currentLang,
+    timestamp: Date.now()
+  });
+}
+
+window.addEventListener("message", function(event) {
+  if (event.data && event.data.type === "streamlit:render") {
+    const args = event.data.args || {};
+    if (args.language) {
+      applyLanguage(args.language);
+    }
+  }
+});
+
+window.addEventListener("load", function() {
+  sendMessageToStreamlit("streamlit:componentReady", { apiVersion: 1 });
+  setFrameHeight(190);
+});
+</script>
+</body>
+</html>
