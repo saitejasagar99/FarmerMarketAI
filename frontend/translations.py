@@ -347,7 +347,7 @@ REDESIGN_TRANSLATIONS = {
         'nav_ai_recommendation': '🤖 AI Recommendation',
         'nav_about': 'ℹ️ About Platform',
         'feed_live_indicator': 'Live APMC Feed Active',
-        'crop_input_title': '🌾 Enter Harvest Details',
+        'crop_input_title': 'Enter Crop Details',
         'crop_input_subtitle': 'Provide your crop, quantity, and location to find the highest-paying mandi',
     },
     'te': {
@@ -367,7 +367,7 @@ REDESIGN_TRANSLATIONS = {
         'nav_ai_recommendation': '🤖 AI సిఫార్సు',
         'nav_about': 'ℹ️ ప్లాట్‌ఫారమ్ గురించి',
         'feed_live_indicator': 'లైవ్ APMC ఫీడ్ యాక్టివ్',
-        'crop_input_title': '🌾 పంట వివరాలను నమోదు చేయండి',
+        'crop_input_title': 'పంట వివరాలను నమోదు చేయండి',
         'crop_input_subtitle': 'అత్యధిక ధర చెల్లించే మార్కెట్‌ను కనుగొనడానికి మీ పంట, పరిమాణం మరియు స్థానాన్ని ఎంచుకోండి',
     },
     'hi': {
@@ -387,17 +387,20 @@ REDESIGN_TRANSLATIONS = {
         'nav_ai_recommendation': '🤖 AI अनुशंसा',
         'nav_about': 'ℹ️ पोर्टल के बारे में',
         'feed_live_indicator': 'लाइव APMC फीड सक्रिय',
-        'crop_input_title': '🌾 फसल विवरण दर्ज करें',
+        'crop_input_title': 'फसल विवरण दर्ज करें',
         'crop_input_subtitle': 'सबसे अधिक भाव देने वाली मंडी खोजने के लिए फसल, मात्रा और स्थान दर्ज करें',
     },
     'ta': {
         'btn_analyze_harvest': 'சந்தையை ஆராய்க',
+        'crop_input_title': 'பயிர் விவரங்களை உள்ளிடவும்',
     },
     'kn': {
         'btn_analyze_harvest': 'ಮಾರುಕಟ್ಟೆ ವಿಶ್ಲೇಷಿಸಿ',
+        'crop_input_title': 'ಬೆಳೆ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ',
     },
     'mr': {
         'btn_analyze_harvest': 'बाजार विश्लेषण करा',
+        'crop_input_title': 'पिकाचा तपशील प्रविष्ट करा',
     }
 }
 for _rlang, _rkvs in REDESIGN_TRANSLATIONS.items():
