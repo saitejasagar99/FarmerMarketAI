@@ -484,51 +484,28 @@ def calculate_scores(state: MarketState):
     ) * 100
 
     # --------------------------------------------------------
-    # BASE WAIT SCORE
+    # BASE WAIT SCORE (PRICE FORECAST TREND)
     # --------------------------------------------------------
 
-    wait_score = 50
-
     if price_change_percent >= 5:
-
         wait_score = 80
-
     elif price_change_percent >= 2:
-
         wait_score = 70
-
     elif price_change_percent > 0:
-
         wait_score = 60
-
     elif price_change_percent <= -5:
-
         wait_score = 20
-
     elif price_change_percent <= -2:
-
         wait_score = 30
-
     elif price_change_percent < 0:
-
+        wait_score = 40
+    else:
+        # price_change_percent == 0 (Flat price / stagnant forecast)
+        # If price is stagnant, holding gives NO financial upside
         wait_score = 40
 
     # --------------------------------------------------------
-    # QUALITY ADJUSTMENT
-    # --------------------------------------------------------
-
-    quality = state["quality"]
-
-    if quality == "Grade A":
-
-        wait_score += 5
-
-    elif quality == "Grade C":
-
-        wait_score -= 5
-
-    # --------------------------------------------------------
-    # CROP PERISHABILITY & WEATHER RISK ADJUSTMENT
+    # CROP PERISHABILITY & SPOILAGE RISK ADJUSTMENT
     # --------------------------------------------------------
 
     from services.market_intel import (
@@ -557,41 +534,63 @@ def calculate_scores(state: MarketState):
         wait_days=3
     )
 
-    # Harvest age adjustment: older harvests lose moisture and degrade rapidly
-    if h_eval.get("quality") == "Grade C":
-        wait_score -= 25
-    elif h_eval.get("quality") == "Grade B" and crop_risk["perishability"] in ["Very High", "High"]:
-        wait_score -= 15
+    # --------------------------------------------------------
+    # QUALITY & HARVEST AGE ADJUSTMENT
+    # --------------------------------------------------------
 
-    # High perishability crops suffer rot and weight loss if held
-    if crop_risk["perishability"] == "Very High":
-        wait_score -= 20
-    elif crop_risk["perishability"] == "High":
-        wait_score -= 10
-    elif "Grain" in crop_risk["perishability"]:
+    quality = state.get("quality", "Grade A")
+    if quality == "Grade A" and h_eval.get("days_elapsed", 0) <= 1:
         wait_score += 5
+    elif quality == "Grade C" or h_eval.get("quality") == "Grade C":
+        wait_score -= 25
+
+    # --------------------------------------------------------
+    # PERISHABILITY DYNAMICS
+    # --------------------------------------------------------
+
+    is_perishable = crop_risk["perishability"] in ["Very High", "High", "Moderate", "Fresh Perishable Vegetable", "Fresh Fruit"]
+    
+    if is_perishable:
+        if price_change_percent <= 0:
+            # Perishable crop with no price increase MUST be sold immediately
+            wait_score = min(wait_score, 15)
+        elif price_change_percent < 5:
+            wait_score -= 20
+        else:
+            wait_score -= 10
+    elif "Grain" in crop_risk["perishability"] or "Fiber" in crop_risk["perishability"] or "Oilseed" in crop_risk["perishability"]:
+        if price_change_percent > 0:
+            wait_score += 10
 
     # Weather impact: rain/humidity accelerates perishable rotting
-    if weather["rain_prob_val"] >= 20 and crop_risk["perishability"] in ["Very High", "High"]:
+    if weather.get("rain_prob_val", 0) >= 20 and is_perishable:
         wait_score -= 10
+
+    # --------------------------------------------------------
+    # HOLDING MULTIPLIER (PHYSICAL ROT VS PRICE RETURN)
+    # --------------------------------------------------------
+
+    volume_loss = holding_spoilage.get("volume_loss_pct", 0.0) / 100.0
+    quality_markdown = holding_spoilage.get("quality_markdown_pct", 0.0) / 100.0
+    
+    # Financial holding multiplier: effective income per kg held vs sold today
+    holding_multiplier = (1.0 - volume_loss) * (1.0 - quality_markdown) * (1.0 + price_change_percent / 100.0)
+
+    # CRITICAL RULE: If holding yields LESS net money than selling today (holding_multiplier < 1.0),
+    # waiting is financially irrational! Decision MUST be SELL NOW!
+    if holding_multiplier < 1.0:
+        wait_score = min(wait_score, 15)
+    elif holding_multiplier < 1.03:
+        # Less than 3% net gain is too thin to justify physical holding risks
+        wait_score = min(wait_score, 35)
 
     # HARD SHELF-LIFE CLAMP: If crop is past safe shelf-life or decaying severely,
     # waiting is physically impossible regardless of mandi prices!
     shelf_limit = h_eval.get("shelf_life_limit", 4)
-    if h_eval.get("is_past_shelf_life") or (crop_risk["perishability"] in ["Very High", "High"] and (h_eval["days_elapsed"] >= shelf_limit or state.get("quality") == "Grade C")):
+    if h_eval.get("is_past_shelf_life") or (is_perishable and (h_eval.get("days_elapsed", 0) >= shelf_limit or quality == "Grade C")):
         wait_score = min(wait_score, 3)
-    elif holding_spoilage["is_severe_spoilage"]:
+    elif holding_spoilage.get("is_severe_spoilage"):
         wait_score = min(wait_score, 10)
-
-    # Spoilage financial factor: If volume loss + markdown outweighs price rise
-    if price_change_percent > 0 and holding_spoilage["volume_loss_pct"] > 0:
-        holding_factor = (
-            (1.0 - holding_spoilage["volume_loss_pct"] / 100.0) *
-            (1.0 - holding_spoilage["quality_markdown_pct"] / 100.0) *
-            (1.0 + price_change_percent / 100.0)
-        )
-        if holding_factor < 0.98:
-            wait_score = min(wait_score, 25)
 
     # --------------------------------------------------------
     # KEEP SCORE BETWEEN 0 AND 100

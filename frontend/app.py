@@ -2405,11 +2405,19 @@ if current_analysis and current_analysis.get("recommendation_data"):
                 )
 
             # Spoilage Impact Banner (if any)
+            holding_spoilage_info = recommendation_data.get("holding_spoilage", {})
+            is_severe_rot = holding_spoilage_info.get("is_severe_spoilage", False) if isinstance(holding_spoilage_info, dict) else (spoilage_loss_kg >= (0.05 * quantity_value))
             if spoilage_loss_kg > 0:
-                st.warning(
-                    f"📉 **{t('lbl_spoilage_risk', lang)}:** Holding {crop} for 3 days results in ~{spoilage_loss_kg:g} kg rot/discard loss, "
-                    f"leaving {future_salable_qty:g} kg salable produce. Net difference after spoilage: ₹{revenue_difference:+,.2f}."
-                )
+                if is_severe_rot:
+                    st.warning(
+                        f"🚨 **{t('lbl_spoilage_risk', lang)}:** Holding {crop} for 3 days results in ~{spoilage_loss_kg:g} kg rot/discard loss, "
+                        f"leaving {future_salable_qty:g} kg salable produce. Net difference after spoilage: ₹{revenue_difference:+,.2f}."
+                    )
+                else:
+                    st.info(
+                        f"📉 **Storage Shrinkage Impact:** Holding {crop} for 3 days involves ~{spoilage_loss_kg:g} kg natural moisture shrinkage, "
+                        f"leaving {future_salable_qty:g} kg salable produce. Net difference after holding: ₹{revenue_difference:+,.2f}."
+                    )
             else:
                 st.success(
                     f"✅ **{crop} Holding Durability:** Minimal or zero storage spoilage expected over 3 days. Salable harvest remains {quantity_value:g} kg."

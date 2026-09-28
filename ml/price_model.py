@@ -16,6 +16,37 @@ df = pd.read_csv(DATA_FILE)
 CROP_ALIASES = {
     "green chilli": "chilli",
     "paddy": "rice",
+    "bhindi": "bhendi",
+    "okra": "bhendi",
+    "ladies finger": "bhendi",
+    "tur": "red gram",
+    "arhar": "red gram",
+    "kandi": "red gram",
+    "chana": "bengal gram",
+    "chickpea": "bengal gram",
+    "moong": "green gram",
+    "pesalu": "green gram",
+    "urad": "black gram",
+    "minumu": "black gram",
+    "peanut": "groundnut",
+    "corn": "maize",
+    "sorghum": "jowar",
+    "pearl millet": "bajra",
+    "finger millet": "ragi",
+    "kapas": "cotton",
+    "pasupu": "turmeric",
+    "haldi": "turmeric",
+    "allam": "ginger",
+    "vellulli": "garlic",
+    "eggplant": "brinjal",
+    "vankaya": "brinjal",
+    "karela": "bitter gourd",
+    "sorakaya": "bottle gourd",
+    "lauki": "bottle gourd",
+    "alu": "potato",
+    "kheera": "cucumber",
+    "til": "sesame",
+    "sesamum": "sesame",
 }
 
 
@@ -24,12 +55,21 @@ CROP_ALIASES = {
 # ============================================================
 
 def train_model(crop):
-
+    global df
     target_crop = CROP_ALIASES.get(crop.lower().strip(), crop.lower().strip())
 
     crop_data = df[
         df["crop"].astype(str).str.lower() == target_crop
     ].copy()
+
+    if len(crop_data) < 5:
+        try:
+            df = pd.read_csv(DATA_FILE)
+            crop_data = df[
+                df["crop"].astype(str).str.lower() == target_crop
+            ].copy()
+        except Exception:
+            pass
 
     # Need enough historical records
     if len(crop_data) < 5:

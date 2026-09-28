@@ -1,126 +1,621 @@
 date,crop,market,price
-2026-08-01,Tomato,Bowenpally,24
-2026-08-02,Tomato,Bowenpally,25
-2026-08-03,Tomato,Bowenpally,24
-2026-08-04,Tomato,Bowenpally,26
-2026-08-05,Tomato,Bowenpally,27
-2026-08-06,Tomato,Bowenpally,26
-2026-08-07,Tomato,Bowenpally,28
-2026-08-08,Tomato,Bowenpally,27
-2026-08-09,Tomato,Bowenpally,29
-2026-08-10,Tomato,Bowenpally,30
-2026-08-11,Tomato,Bowenpally,29
-2026-08-12,Tomato,Bowenpally,31
-2026-08-13,Tomato,Bowenpally,30
-2026-08-14,Tomato,Bowenpally,32
-2026-08-15,Tomato,Bowenpally,31
-2026-08-16,Tomato,Bowenpally,33
-2026-08-17,Tomato,Bowenpally,32
-2026-08-18,Tomato,Bowenpally,34
-2026-08-19,Tomato,Bowenpally,33
-2026-08-20,Tomato,Bowenpally,35
-
-2026-08-01,Rice,Bowenpally,38
-2026-08-02,Rice,Bowenpally,39
-2026-08-03,Rice,Bowenpally,38
-2026-08-04,Rice,Bowenpally,40
-2026-08-05,Rice,Bowenpally,41
-2026-08-06,Rice,Bowenpally,40
-2026-08-07,Rice,Bowenpally,42
-2026-08-08,Rice,Bowenpally,41
-2026-08-09,Rice,Bowenpally,43
-2026-08-10,Rice,Bowenpally,44
-2026-08-11,Rice,Bowenpally,43
-2026-08-12,Rice,Bowenpally,45
-2026-08-13,Rice,Bowenpally,44
-2026-08-14,Rice,Bowenpally,46
-2026-08-15,Rice,Bowenpally,45
-2026-08-16,Rice,Bowenpally,47
-2026-08-17,Rice,Bowenpally,46
-2026-08-18,Rice,Bowenpally,48
-2026-08-19,Rice,Bowenpally,47
-2026-08-20,Rice,Bowenpally,49
-
-2026-08-01,Cotton,Bowenpally,68
-2026-08-02,Cotton,Bowenpally,69
-2026-08-03,Cotton,Bowenpally,68
-2026-08-04,Cotton,Bowenpally,70
-2026-08-05,Cotton,Bowenpally,71
-2026-08-06,Cotton,Bowenpally,70
-2026-08-07,Cotton,Bowenpally,72
-2026-08-08,Cotton,Bowenpally,71
-2026-08-09,Cotton,Bowenpally,73
-2026-08-10,Cotton,Bowenpally,74
-2026-08-11,Cotton,Bowenpally,73
-2026-08-12,Cotton,Bowenpally,75
-2026-08-13,Cotton,Bowenpally,74
-2026-08-14,Cotton,Bowenpally,76
-2026-08-15,Cotton,Bowenpally,75
-2026-08-16,Cotton,Bowenpally,77
-2026-08-17,Cotton,Bowenpally,76
-2026-08-18,Cotton,Bowenpally,78
-2026-08-19,Cotton,Bowenpally,77
-2026-08-20,Cotton,Bowenpally,79
-
-2026-08-01,Chilli,Bowenpally,98
-2026-08-02,Chilli,Bowenpally,100
-2026-08-03,Chilli,Bowenpally,99
-2026-08-04,Chilli,Bowenpally,102
-2026-08-05,Chilli,Bowenpally,104
-2026-08-06,Chilli,Bowenpally,103
-2026-08-07,Chilli,Bowenpally,106
-2026-08-08,Chilli,Bowenpally,105
-2026-08-09,Chilli,Bowenpally,108
-2026-08-10,Chilli,Bowenpally,110
-2026-08-11,Chilli,Bowenpally,109
-2026-08-12,Chilli,Bowenpally,112
-2026-08-13,Chilli,Bowenpally,111
-2026-08-14,Chilli,Bowenpally,114
-2026-08-15,Chilli,Bowenpally,113
-2026-08-16,Chilli,Bowenpally,116
-2026-08-17,Chilli,Bowenpally,115
-2026-08-18,Chilli,Bowenpally,118
-2026-08-19,Chilli,Bowenpally,117
-2026-08-20,Chilli,Bowenpally,120
-
-2026-08-01,Maize,Bowenpally,20
-2026-08-02,Maize,Bowenpally,21
-2026-08-03,Maize,Bowenpally,20
-2026-08-04,Maize,Bowenpally,22
-2026-08-05,Maize,Bowenpally,23
-2026-08-06,Maize,Bowenpally,22
-2026-08-07,Maize,Bowenpally,24
-2026-08-08,Maize,Bowenpally,23
-2026-08-09,Maize,Bowenpally,25
-2026-08-10,Maize,Bowenpally,26
-2026-08-11,Maize,Bowenpally,25
-2026-08-12,Maize,Bowenpally,27
-2026-08-13,Maize,Bowenpally,26
-2026-08-14,Maize,Bowenpally,28
-2026-08-15,Maize,Bowenpally,27
-2026-08-16,Maize,Bowenpally,29
-2026-08-17,Maize,Bowenpally,28
-2026-08-18,Maize,Bowenpally,30
-2026-08-19,Maize,Bowenpally,29
-2026-08-20,Maize,Bowenpally,31
-
-2026-08-01,Onion,Bowenpally,22
-2026-08-02,Onion,Bowenpally,23
-2026-08-03,Onion,Bowenpally,22
-2026-08-04,Onion,Bowenpally,24
-2026-08-05,Onion,Bowenpally,25
-2026-08-06,Onion,Bowenpally,24
-2026-08-07,Onion,Bowenpally,26
-2026-08-08,Onion,Bowenpally,25
-2026-08-09,Onion,Bowenpally,27
-2026-08-10,Onion,Bowenpally,28
-2026-08-11,Onion,Bowenpally,27
-2026-08-12,Onion,Bowenpally,29
-2026-08-13,Onion,Bowenpally,28
-2026-08-14,Onion,Bowenpally,30
-2026-08-15,Onion,Bowenpally,29
-2026-08-16,Onion,Bowenpally,31
-2026-08-17,Onion,Bowenpally,30
-2026-08-18,Onion,Bowenpally,32
-2026-08-19,Onion,Bowenpally,31
-2026-08-20,Onion,Bowenpally,33
+2026-08-01,Tomato,Bowenpally,24.0
+2026-08-02,Tomato,Bowenpally,25.0
+2026-08-03,Tomato,Bowenpally,24.0
+2026-08-04,Tomato,Bowenpally,26.0
+2026-08-05,Tomato,Bowenpally,27.0
+2026-08-06,Tomato,Bowenpally,26.0
+2026-08-07,Tomato,Bowenpally,28.0
+2026-08-08,Tomato,Bowenpally,27.0
+2026-08-09,Tomato,Bowenpally,29.0
+2026-08-10,Tomato,Bowenpally,30.0
+2026-08-11,Tomato,Bowenpally,29.0
+2026-08-12,Tomato,Bowenpally,31.0
+2026-08-13,Tomato,Bowenpally,30.0
+2026-08-14,Tomato,Bowenpally,32.0
+2026-08-15,Tomato,Bowenpally,31.0
+2026-08-16,Tomato,Bowenpally,33.0
+2026-08-17,Tomato,Bowenpally,32.0
+2026-08-18,Tomato,Bowenpally,34.0
+2026-08-19,Tomato,Bowenpally,33.0
+2026-08-20,Tomato,Bowenpally,35.0
+2026-08-01,Rice,Bowenpally,38.0
+2026-08-02,Rice,Bowenpally,39.0
+2026-08-03,Rice,Bowenpally,38.0
+2026-08-04,Rice,Bowenpally,40.0
+2026-08-05,Rice,Bowenpally,41.0
+2026-08-06,Rice,Bowenpally,40.0
+2026-08-07,Rice,Bowenpally,42.0
+2026-08-08,Rice,Bowenpally,41.0
+2026-08-09,Rice,Bowenpally,43.0
+2026-08-10,Rice,Bowenpally,44.0
+2026-08-11,Rice,Bowenpally,43.0
+2026-08-12,Rice,Bowenpally,45.0
+2026-08-13,Rice,Bowenpally,44.0
+2026-08-14,Rice,Bowenpally,46.0
+2026-08-15,Rice,Bowenpally,45.0
+2026-08-16,Rice,Bowenpally,47.0
+2026-08-17,Rice,Bowenpally,46.0
+2026-08-18,Rice,Bowenpally,48.0
+2026-08-19,Rice,Bowenpally,47.0
+2026-08-20,Rice,Bowenpally,49.0
+2026-08-01,Cotton,Bowenpally,68.0
+2026-08-02,Cotton,Bowenpally,69.0
+2026-08-03,Cotton,Bowenpally,68.0
+2026-08-04,Cotton,Bowenpally,70.0
+2026-08-05,Cotton,Bowenpally,71.0
+2026-08-06,Cotton,Bowenpally,70.0
+2026-08-07,Cotton,Bowenpally,72.0
+2026-08-08,Cotton,Bowenpally,71.0
+2026-08-09,Cotton,Bowenpally,73.0
+2026-08-10,Cotton,Bowenpally,74.0
+2026-08-11,Cotton,Bowenpally,73.0
+2026-08-12,Cotton,Bowenpally,75.0
+2026-08-13,Cotton,Bowenpally,74.0
+2026-08-14,Cotton,Bowenpally,76.0
+2026-08-15,Cotton,Bowenpally,75.0
+2026-08-16,Cotton,Bowenpally,77.0
+2026-08-17,Cotton,Bowenpally,76.0
+2026-08-18,Cotton,Bowenpally,78.0
+2026-08-19,Cotton,Bowenpally,77.0
+2026-08-20,Cotton,Bowenpally,79.0
+2026-08-01,Chilli,Bowenpally,98.0
+2026-08-02,Chilli,Bowenpally,100.0
+2026-08-03,Chilli,Bowenpally,99.0
+2026-08-04,Chilli,Bowenpally,102.0
+2026-08-05,Chilli,Bowenpally,104.0
+2026-08-06,Chilli,Bowenpally,103.0
+2026-08-07,Chilli,Bowenpally,106.0
+2026-08-08,Chilli,Bowenpally,105.0
+2026-08-09,Chilli,Bowenpally,108.0
+2026-08-10,Chilli,Bowenpally,110.0
+2026-08-11,Chilli,Bowenpally,109.0
+2026-08-12,Chilli,Bowenpally,112.0
+2026-08-13,Chilli,Bowenpally,111.0
+2026-08-14,Chilli,Bowenpally,114.0
+2026-08-15,Chilli,Bowenpally,113.0
+2026-08-16,Chilli,Bowenpally,116.0
+2026-08-17,Chilli,Bowenpally,115.0
+2026-08-18,Chilli,Bowenpally,118.0
+2026-08-19,Chilli,Bowenpally,117.0
+2026-08-20,Chilli,Bowenpally,120.0
+2026-08-01,Maize,Bowenpally,20.0
+2026-08-02,Maize,Bowenpally,21.0
+2026-08-03,Maize,Bowenpally,20.0
+2026-08-04,Maize,Bowenpally,22.0
+2026-08-05,Maize,Bowenpally,23.0
+2026-08-06,Maize,Bowenpally,22.0
+2026-08-07,Maize,Bowenpally,24.0
+2026-08-08,Maize,Bowenpally,23.0
+2026-08-09,Maize,Bowenpally,25.0
+2026-08-10,Maize,Bowenpally,26.0
+2026-08-11,Maize,Bowenpally,25.0
+2026-08-12,Maize,Bowenpally,27.0
+2026-08-13,Maize,Bowenpally,26.0
+2026-08-14,Maize,Bowenpally,28.0
+2026-08-15,Maize,Bowenpally,27.0
+2026-08-16,Maize,Bowenpally,29.0
+2026-08-17,Maize,Bowenpally,28.0
+2026-08-18,Maize,Bowenpally,30.0
+2026-08-19,Maize,Bowenpally,29.0
+2026-08-20,Maize,Bowenpally,31.0
+2026-08-01,Onion,Bowenpally,22.0
+2026-08-02,Onion,Bowenpally,23.0
+2026-08-03,Onion,Bowenpally,22.0
+2026-08-04,Onion,Bowenpally,24.0
+2026-08-05,Onion,Bowenpally,25.0
+2026-08-06,Onion,Bowenpally,24.0
+2026-08-07,Onion,Bowenpally,26.0
+2026-08-08,Onion,Bowenpally,25.0
+2026-08-09,Onion,Bowenpally,27.0
+2026-08-10,Onion,Bowenpally,28.0
+2026-08-11,Onion,Bowenpally,27.0
+2026-08-12,Onion,Bowenpally,29.0
+2026-08-13,Onion,Bowenpally,28.0
+2026-08-14,Onion,Bowenpally,30.0
+2026-08-15,Onion,Bowenpally,29.0
+2026-08-16,Onion,Bowenpally,31.0
+2026-08-17,Onion,Bowenpally,30.0
+2026-08-18,Onion,Bowenpally,32.0
+2026-08-19,Onion,Bowenpally,31.0
+2026-08-20,Onion,Bowenpally,33.0
+2026-08-01,Jowar,Bowenpally,31.4
+2026-08-02,Jowar,Bowenpally,31.5
+2026-08-03,Jowar,Bowenpally,32.4
+2026-08-04,Jowar,Bowenpally,32.4
+2026-08-05,Jowar,Bowenpally,32.3
+2026-08-06,Jowar,Bowenpally,31.6
+2026-08-07,Jowar,Bowenpally,32.3
+2026-08-08,Jowar,Bowenpally,32.4
+2026-08-09,Jowar,Bowenpally,32.8
+2026-08-10,Jowar,Bowenpally,32.8
+2026-08-11,Jowar,Bowenpally,33.6
+2026-08-12,Jowar,Bowenpally,33.4
+2026-08-13,Jowar,Bowenpally,32.9
+2026-08-14,Jowar,Bowenpally,33.3
+2026-08-15,Jowar,Bowenpally,33.3
+2026-08-16,Jowar,Bowenpally,33.9
+2026-08-17,Jowar,Bowenpally,33.3
+2026-08-18,Jowar,Bowenpally,33.4
+2026-08-19,Jowar,Bowenpally,34.4
+2026-08-20,Jowar,Bowenpally,33.9
+2026-08-01,Bajra,Bowenpally,26.5
+2026-08-02,Bajra,Bowenpally,25.9
+2026-08-03,Bajra,Bowenpally,26.5
+2026-08-04,Bajra,Bowenpally,26.3
+2026-08-05,Bajra,Bowenpally,26.1
+2026-08-06,Bajra,Bowenpally,25.5
+2026-08-07,Bajra,Bowenpally,25.8
+2026-08-08,Bajra,Bowenpally,25.7
+2026-08-09,Bajra,Bowenpally,25.9
+2026-08-10,Bajra,Bowenpally,25.1
+2026-08-11,Bajra,Bowenpally,25.7
+2026-08-12,Bajra,Bowenpally,24.9
+2026-08-13,Bajra,Bowenpally,25.6
+2026-08-14,Bajra,Bowenpally,25.2
+2026-08-15,Bajra,Bowenpally,25.2
+2026-08-16,Bajra,Bowenpally,25.1
+2026-08-17,Bajra,Bowenpally,25.1
+2026-08-18,Bajra,Bowenpally,25.3
+2026-08-19,Bajra,Bowenpally,25.2
+2026-08-20,Bajra,Bowenpally,24.9
+2026-08-01,Ragi,Bowenpally,34.8
+2026-08-02,Ragi,Bowenpally,35.6
+2026-08-03,Ragi,Bowenpally,35.7
+2026-08-04,Ragi,Bowenpally,36.7
+2026-08-05,Ragi,Bowenpally,36.3
+2026-08-06,Ragi,Bowenpally,36.6
+2026-08-07,Ragi,Bowenpally,37.3
+2026-08-08,Ragi,Bowenpally,37.0
+2026-08-09,Ragi,Bowenpally,36.7
+2026-08-10,Ragi,Bowenpally,37.4
+2026-08-11,Ragi,Bowenpally,37.1
+2026-08-12,Ragi,Bowenpally,37.6
+2026-08-13,Ragi,Bowenpally,38.1
+2026-08-14,Ragi,Bowenpally,37.9
+2026-08-15,Ragi,Bowenpally,38.4
+2026-08-16,Ragi,Bowenpally,38.1
+2026-08-17,Ragi,Bowenpally,38.8
+2026-08-18,Ragi,Bowenpally,39.2
+2026-08-19,Ragi,Bowenpally,38.6
+2026-08-20,Ragi,Bowenpally,39.6
+2026-08-01,Red Gram,Bowenpally,71.1
+2026-08-02,Red Gram,Bowenpally,73.5
+2026-08-03,Red Gram,Bowenpally,74.1
+2026-08-04,Red Gram,Bowenpally,73.9
+2026-08-05,Red Gram,Bowenpally,73.3
+2026-08-06,Red Gram,Bowenpally,74.0
+2026-08-07,Red Gram,Bowenpally,74.6
+2026-08-08,Red Gram,Bowenpally,73.5
+2026-08-09,Red Gram,Bowenpally,76.7
+2026-08-10,Red Gram,Bowenpally,76.2
+2026-08-11,Red Gram,Bowenpally,74.9
+2026-08-12,Red Gram,Bowenpally,76.7
+2026-08-13,Red Gram,Bowenpally,78.1
+2026-08-14,Red Gram,Bowenpally,78.0
+2026-08-15,Red Gram,Bowenpally,78.7
+2026-08-16,Red Gram,Bowenpally,77.5
+2026-08-17,Red Gram,Bowenpally,77.1
+2026-08-18,Red Gram,Bowenpally,78.8
+2026-08-19,Red Gram,Bowenpally,79.2
+2026-08-20,Red Gram,Bowenpally,78.7
+2026-08-01,Bengal Gram,Bowenpally,62.1
+2026-08-02,Bengal Gram,Bowenpally,61.5
+2026-08-03,Bengal Gram,Bowenpally,62.7
+2026-08-04,Bengal Gram,Bowenpally,62.1
+2026-08-05,Bengal Gram,Bowenpally,61.9
+2026-08-06,Bengal Gram,Bowenpally,60.9
+2026-08-07,Bengal Gram,Bowenpally,61.9
+2026-08-08,Bengal Gram,Bowenpally,60.2
+2026-08-09,Bengal Gram,Bowenpally,61.2
+2026-08-10,Bengal Gram,Bowenpally,59.5
+2026-08-11,Bengal Gram,Bowenpally,60.4
+2026-08-12,Bengal Gram,Bowenpally,60.4
+2026-08-13,Bengal Gram,Bowenpally,59.2
+2026-08-14,Bengal Gram,Bowenpally,58.7
+2026-08-15,Bengal Gram,Bowenpally,58.3
+2026-08-16,Bengal Gram,Bowenpally,59.6
+2026-08-17,Bengal Gram,Bowenpally,58.5
+2026-08-18,Bengal Gram,Bowenpally,58.5
+2026-08-19,Bengal Gram,Bowenpally,57.2
+2026-08-20,Bengal Gram,Bowenpally,58.1
+2026-08-01,Green Gram,Bowenpally,79.6
+2026-08-02,Green Gram,Bowenpally,77.9
+2026-08-03,Green Gram,Bowenpally,79.4
+2026-08-04,Green Gram,Bowenpally,80.6
+2026-08-05,Green Gram,Bowenpally,80.5
+2026-08-06,Green Gram,Bowenpally,79.6
+2026-08-07,Green Gram,Bowenpally,80.3
+2026-08-08,Green Gram,Bowenpally,81.3
+2026-08-09,Green Gram,Bowenpally,80.2
+2026-08-10,Green Gram,Bowenpally,83.3
+2026-08-11,Green Gram,Bowenpally,82.8
+2026-08-12,Green Gram,Bowenpally,84.1
+2026-08-13,Green Gram,Bowenpally,83.8
+2026-08-14,Green Gram,Bowenpally,83.3
+2026-08-15,Green Gram,Bowenpally,83.4
+2026-08-16,Green Gram,Bowenpally,83.3
+2026-08-17,Green Gram,Bowenpally,83.6
+2026-08-18,Green Gram,Bowenpally,85.3
+2026-08-19,Green Gram,Bowenpally,85.1
+2026-08-20,Green Gram,Bowenpally,84.9
+2026-08-01,Black Gram,Bowenpally,80.5
+2026-08-02,Black Gram,Bowenpally,80.6
+2026-08-03,Black Gram,Bowenpally,78.0
+2026-08-04,Black Gram,Bowenpally,79.3
+2026-08-05,Black Gram,Bowenpally,80.0
+2026-08-06,Black Gram,Bowenpally,79.4
+2026-08-07,Black Gram,Bowenpally,78.0
+2026-08-08,Black Gram,Bowenpally,77.7
+2026-08-09,Black Gram,Bowenpally,78.8
+2026-08-10,Black Gram,Bowenpally,79.5
+2026-08-11,Black Gram,Bowenpally,78.4
+2026-08-12,Black Gram,Bowenpally,78.7
+2026-08-13,Black Gram,Bowenpally,79.0
+2026-08-14,Black Gram,Bowenpally,76.7
+2026-08-15,Black Gram,Bowenpally,78.8
+2026-08-16,Black Gram,Bowenpally,76.1
+2026-08-17,Black Gram,Bowenpally,78.3
+2026-08-18,Black Gram,Bowenpally,78.1
+2026-08-19,Black Gram,Bowenpally,76.9
+2026-08-20,Black Gram,Bowenpally,75.8
+2026-08-01,Groundnut,Bowenpally,62.9
+2026-08-02,Groundnut,Bowenpally,62.3
+2026-08-03,Groundnut,Bowenpally,64.3
+2026-08-04,Groundnut,Bowenpally,64.8
+2026-08-05,Groundnut,Bowenpally,64.3
+2026-08-06,Groundnut,Bowenpally,64.2
+2026-08-07,Groundnut,Bowenpally,65.5
+2026-08-08,Groundnut,Bowenpally,65.8
+2026-08-09,Groundnut,Bowenpally,66.5
+2026-08-10,Groundnut,Bowenpally,66.0
+2026-08-11,Groundnut,Bowenpally,65.5
+2026-08-12,Groundnut,Bowenpally,67.6
+2026-08-13,Groundnut,Bowenpally,66.4
+2026-08-14,Groundnut,Bowenpally,67.2
+2026-08-15,Groundnut,Bowenpally,67.7
+2026-08-16,Groundnut,Bowenpally,68.0
+2026-08-17,Groundnut,Bowenpally,68.0
+2026-08-18,Groundnut,Bowenpally,67.6
+2026-08-19,Groundnut,Bowenpally,67.3
+2026-08-20,Groundnut,Bowenpally,68.4
+2026-08-01,Soybean,Bowenpally,49.8
+2026-08-02,Soybean,Bowenpally,49.6
+2026-08-03,Soybean,Bowenpally,49.5
+2026-08-04,Soybean,Bowenpally,49.5
+2026-08-05,Soybean,Bowenpally,48.0
+2026-08-06,Soybean,Bowenpally,49.3
+2026-08-07,Soybean,Bowenpally,47.8
+2026-08-08,Soybean,Bowenpally,48.1
+2026-08-09,Soybean,Bowenpally,47.6
+2026-08-10,Soybean,Bowenpally,47.6
+2026-08-11,Soybean,Bowenpally,47.6
+2026-08-12,Soybean,Bowenpally,47.7
+2026-08-13,Soybean,Bowenpally,47.2
+2026-08-14,Soybean,Bowenpally,46.1
+2026-08-15,Soybean,Bowenpally,46.9
+2026-08-16,Soybean,Bowenpally,46.2
+2026-08-17,Soybean,Bowenpally,45.6
+2026-08-18,Soybean,Bowenpally,45.3
+2026-08-19,Soybean,Bowenpally,46.6
+2026-08-20,Soybean,Bowenpally,45.2
+2026-08-01,Sunflower,Bowenpally,50.1
+2026-08-02,Sunflower,Bowenpally,51.3
+2026-08-03,Sunflower,Bowenpally,51.0
+2026-08-04,Sunflower,Bowenpally,52.0
+2026-08-05,Sunflower,Bowenpally,52.0
+2026-08-06,Sunflower,Bowenpally,51.7
+2026-08-07,Sunflower,Bowenpally,52.6
+2026-08-08,Sunflower,Bowenpally,51.8
+2026-08-09,Sunflower,Bowenpally,51.3
+2026-08-10,Sunflower,Bowenpally,51.0
+2026-08-11,Sunflower,Bowenpally,52.7
+2026-08-12,Sunflower,Bowenpally,52.3
+2026-08-13,Sunflower,Bowenpally,52.0
+2026-08-14,Sunflower,Bowenpally,51.5
+2026-08-15,Sunflower,Bowenpally,52.5
+2026-08-16,Sunflower,Bowenpally,53.0
+2026-08-17,Sunflower,Bowenpally,51.6
+2026-08-18,Sunflower,Bowenpally,52.9
+2026-08-19,Sunflower,Bowenpally,52.4
+2026-08-20,Sunflower,Bowenpally,52.3
+2026-08-01,Sesame,Bowenpally,127.5
+2026-08-02,Sesame,Bowenpally,124.0
+2026-08-03,Sesame,Bowenpally,125.7
+2026-08-04,Sesame,Bowenpally,125.1
+2026-08-05,Sesame,Bowenpally,128.6
+2026-08-06,Sesame,Bowenpally,129.0
+2026-08-07,Sesame,Bowenpally,127.0
+2026-08-08,Sesame,Bowenpally,130.8
+2026-08-09,Sesame,Bowenpally,127.7
+2026-08-10,Sesame,Bowenpally,128.7
+2026-08-11,Sesame,Bowenpally,132.1
+2026-08-12,Sesame,Bowenpally,129.8
+2026-08-13,Sesame,Bowenpally,132.4
+2026-08-14,Sesame,Bowenpally,129.5
+2026-08-15,Sesame,Bowenpally,131.1
+2026-08-16,Sesame,Bowenpally,133.1
+2026-08-17,Sesame,Bowenpally,132.4
+2026-08-18,Sesame,Bowenpally,131.3
+2026-08-19,Sesame,Bowenpally,135.6
+2026-08-20,Sesame,Bowenpally,133.0
+2026-08-01,Sesamum,Bowenpally,126.4
+2026-08-02,Sesamum,Bowenpally,127.0
+2026-08-03,Sesamum,Bowenpally,126.6
+2026-08-04,Sesamum,Bowenpally,124.1
+2026-08-05,Sesamum,Bowenpally,128.2
+2026-08-06,Sesamum,Bowenpally,129.0
+2026-08-07,Sesamum,Bowenpally,127.3
+2026-08-08,Sesamum,Bowenpally,130.0
+2026-08-09,Sesamum,Bowenpally,129.3
+2026-08-10,Sesamum,Bowenpally,130.5
+2026-08-11,Sesamum,Bowenpally,130.0
+2026-08-12,Sesamum,Bowenpally,131.2
+2026-08-13,Sesamum,Bowenpally,128.7
+2026-08-14,Sesamum,Bowenpally,132.9
+2026-08-15,Sesamum,Bowenpally,130.0
+2026-08-16,Sesamum,Bowenpally,133.2
+2026-08-17,Sesamum,Bowenpally,131.1
+2026-08-18,Sesamum,Bowenpally,132.0
+2026-08-19,Sesamum,Bowenpally,133.3
+2026-08-20,Sesamum,Bowenpally,135.2
+2026-08-01,Castor,Bowenpally,57.3
+2026-08-02,Castor,Bowenpally,57.4
+2026-08-03,Castor,Bowenpally,57.3
+2026-08-04,Castor,Bowenpally,58.6
+2026-08-05,Castor,Bowenpally,59.7
+2026-08-06,Castor,Bowenpally,59.9
+2026-08-07,Castor,Bowenpally,59.4
+2026-08-08,Castor,Bowenpally,59.3
+2026-08-09,Castor,Bowenpally,58.8
+2026-08-10,Castor,Bowenpally,60.0
+2026-08-11,Castor,Bowenpally,59.9
+2026-08-12,Castor,Bowenpally,59.4
+2026-08-13,Castor,Bowenpally,60.0
+2026-08-14,Castor,Bowenpally,59.6
+2026-08-15,Castor,Bowenpally,61.9
+2026-08-16,Castor,Bowenpally,60.9
+2026-08-17,Castor,Bowenpally,61.6
+2026-08-18,Castor,Bowenpally,61.8
+2026-08-19,Castor,Bowenpally,60.9
+2026-08-20,Castor,Bowenpally,62.6
+2026-08-01,Turmeric,Bowenpally,111.8
+2026-08-02,Turmeric,Bowenpally,115.2
+2026-08-03,Turmeric,Bowenpally,114.8
+2026-08-04,Turmeric,Bowenpally,117.6
+2026-08-05,Turmeric,Bowenpally,118.7
+2026-08-06,Turmeric,Bowenpally,116.8
+2026-08-07,Turmeric,Bowenpally,118.8
+2026-08-08,Turmeric,Bowenpally,119.3
+2026-08-09,Turmeric,Bowenpally,117.0
+2026-08-10,Turmeric,Bowenpally,119.2
+2026-08-11,Turmeric,Bowenpally,119.8
+2026-08-12,Turmeric,Bowenpally,121.2
+2026-08-13,Turmeric,Bowenpally,122.4
+2026-08-14,Turmeric,Bowenpally,119.8
+2026-08-15,Turmeric,Bowenpally,121.1
+2026-08-16,Turmeric,Bowenpally,124.0
+2026-08-17,Turmeric,Bowenpally,125.4
+2026-08-18,Turmeric,Bowenpally,125.9
+2026-08-19,Turmeric,Bowenpally,126.9
+2026-08-20,Turmeric,Bowenpally,124.8
+2026-08-01,Ginger,Bowenpally,75.2
+2026-08-02,Ginger,Bowenpally,75.1
+2026-08-03,Ginger,Bowenpally,75.8
+2026-08-04,Ginger,Bowenpally,75.5
+2026-08-05,Ginger,Bowenpally,75.1
+2026-08-06,Ginger,Bowenpally,74.5
+2026-08-07,Ginger,Bowenpally,72.7
+2026-08-08,Ginger,Bowenpally,72.8
+2026-08-09,Ginger,Bowenpally,73.1
+2026-08-10,Ginger,Bowenpally,73.1
+2026-08-11,Ginger,Bowenpally,71.3
+2026-08-12,Ginger,Bowenpally,72.5
+2026-08-13,Ginger,Bowenpally,70.3
+2026-08-14,Ginger,Bowenpally,69.9
+2026-08-15,Ginger,Bowenpally,69.1
+2026-08-16,Ginger,Bowenpally,69.7
+2026-08-17,Ginger,Bowenpally,69.3
+2026-08-18,Ginger,Bowenpally,69.9
+2026-08-19,Ginger,Bowenpally,67.8
+2026-08-20,Ginger,Bowenpally,69.5
+2026-08-01,Garlic,Bowenpally,138.6
+2026-08-02,Garlic,Bowenpally,139.8
+2026-08-03,Garlic,Bowenpally,138.8
+2026-08-04,Garlic,Bowenpally,137.9
+2026-08-05,Garlic,Bowenpally,142.3
+2026-08-06,Garlic,Bowenpally,138.3
+2026-08-07,Garlic,Bowenpally,141.9
+2026-08-08,Garlic,Bowenpally,141.4
+2026-08-09,Garlic,Bowenpally,142.4
+2026-08-10,Garlic,Bowenpally,142.0
+2026-08-11,Garlic,Bowenpally,144.8
+2026-08-12,Garlic,Bowenpally,146.8
+2026-08-13,Garlic,Bowenpally,147.8
+2026-08-14,Garlic,Bowenpally,148.1
+2026-08-15,Garlic,Bowenpally,150.7
+2026-08-16,Garlic,Bowenpally,149.4
+2026-08-17,Garlic,Bowenpally,148.2
+2026-08-18,Garlic,Bowenpally,148.0
+2026-08-19,Garlic,Bowenpally,152.6
+2026-08-20,Garlic,Bowenpally,154.7
+2026-08-01,Brinjal,Bowenpally,28.7
+2026-08-02,Brinjal,Bowenpally,28.6
+2026-08-03,Brinjal,Bowenpally,28.7
+2026-08-04,Brinjal,Bowenpally,27.8
+2026-08-05,Brinjal,Bowenpally,27.8
+2026-08-06,Brinjal,Bowenpally,27.0
+2026-08-07,Brinjal,Bowenpally,27.3
+2026-08-08,Brinjal,Bowenpally,27.2
+2026-08-09,Brinjal,Bowenpally,26.2
+2026-08-10,Brinjal,Bowenpally,26.7
+2026-08-11,Brinjal,Bowenpally,25.6
+2026-08-12,Brinjal,Bowenpally,26.0
+2026-08-13,Brinjal,Bowenpally,25.6
+2026-08-14,Brinjal,Bowenpally,24.7
+2026-08-15,Brinjal,Bowenpally,24.4
+2026-08-16,Brinjal,Bowenpally,24.9
+2026-08-17,Brinjal,Bowenpally,24.6
+2026-08-18,Brinjal,Bowenpally,24.1
+2026-08-19,Brinjal,Bowenpally,23.5
+2026-08-20,Brinjal,Bowenpally,23.6
+2026-08-01,Bhendi,Bowenpally,36.1
+2026-08-02,Bhendi,Bowenpally,36.4
+2026-08-03,Bhendi,Bowenpally,35.3
+2026-08-04,Bhendi,Bowenpally,35.0
+2026-08-05,Bhendi,Bowenpally,35.0
+2026-08-06,Bhendi,Bowenpally,34.7
+2026-08-07,Bhendi,Bowenpally,33.8
+2026-08-08,Bhendi,Bowenpally,33.9
+2026-08-09,Bhendi,Bowenpally,32.8
+2026-08-10,Bhendi,Bowenpally,32.1
+2026-08-11,Bhendi,Bowenpally,32.3
+2026-08-12,Bhendi,Bowenpally,32.1
+2026-08-13,Bhendi,Bowenpally,31.6
+2026-08-14,Bhendi,Bowenpally,30.6
+2026-08-15,Bhendi,Bowenpally,29.9
+2026-08-16,Bhendi,Bowenpally,30.0
+2026-08-17,Bhendi,Bowenpally,28.7
+2026-08-18,Bhendi,Bowenpally,29.1
+2026-08-19,Bhendi,Bowenpally,28.1
+2026-08-20,Bhendi,Bowenpally,27.9
+2026-08-01,Bitter Gourd,Bowenpally,33.1
+2026-08-02,Bitter Gourd,Bowenpally,33.6
+2026-08-03,Bitter Gourd,Bowenpally,33.6
+2026-08-04,Bitter Gourd,Bowenpally,34.1
+2026-08-05,Bitter Gourd,Bowenpally,34.7
+2026-08-06,Bitter Gourd,Bowenpally,35.0
+2026-08-07,Bitter Gourd,Bowenpally,34.5
+2026-08-08,Bitter Gourd,Bowenpally,34.6
+2026-08-09,Bitter Gourd,Bowenpally,36.1
+2026-08-10,Bitter Gourd,Bowenpally,35.5
+2026-08-11,Bitter Gourd,Bowenpally,35.8
+2026-08-12,Bitter Gourd,Bowenpally,35.9
+2026-08-13,Bitter Gourd,Bowenpally,36.2
+2026-08-14,Bitter Gourd,Bowenpally,37.2
+2026-08-15,Bitter Gourd,Bowenpally,36.5
+2026-08-16,Bitter Gourd,Bowenpally,36.7
+2026-08-17,Bitter Gourd,Bowenpally,37.5
+2026-08-18,Bitter Gourd,Bowenpally,37.8
+2026-08-19,Bitter Gourd,Bowenpally,37.4
+2026-08-20,Bitter Gourd,Bowenpally,38.2
+2026-08-01,Bottle Gourd,Bowenpally,20.6
+2026-08-02,Bottle Gourd,Bowenpally,20.6
+2026-08-03,Bottle Gourd,Bowenpally,20.3
+2026-08-04,Bottle Gourd,Bowenpally,20.1
+2026-08-05,Bottle Gourd,Bowenpally,19.9
+2026-08-06,Bottle Gourd,Bowenpally,20.1
+2026-08-07,Bottle Gourd,Bowenpally,19.7
+2026-08-08,Bottle Gourd,Bowenpally,19.7
+2026-08-09,Bottle Gourd,Bowenpally,19.7
+2026-08-10,Bottle Gourd,Bowenpally,18.9
+2026-08-11,Bottle Gourd,Bowenpally,18.7
+2026-08-12,Bottle Gourd,Bowenpally,19.2
+2026-08-13,Bottle Gourd,Bowenpally,18.5
+2026-08-14,Bottle Gourd,Bowenpally,18.3
+2026-08-15,Bottle Gourd,Bowenpally,18.5
+2026-08-16,Bottle Gourd,Bowenpally,17.9
+2026-08-17,Bottle Gourd,Bowenpally,17.9
+2026-08-18,Bottle Gourd,Bowenpally,17.5
+2026-08-19,Bottle Gourd,Bowenpally,17.6
+2026-08-20,Bottle Gourd,Bowenpally,17.4
+2026-08-01,Potato,Bowenpally,25.4
+2026-08-02,Potato,Bowenpally,25.4
+2026-08-03,Potato,Bowenpally,25.9
+2026-08-04,Potato,Bowenpally,25.7
+2026-08-05,Potato,Bowenpally,26.3
+2026-08-06,Potato,Bowenpally,26.1
+2026-08-07,Potato,Bowenpally,26.0
+2026-08-08,Potato,Bowenpally,26.3
+2026-08-09,Potato,Bowenpally,26.7
+2026-08-10,Potato,Bowenpally,26.5
+2026-08-11,Potato,Bowenpally,27.4
+2026-08-12,Potato,Bowenpally,26.7
+2026-08-13,Potato,Bowenpally,27.0
+2026-08-14,Potato,Bowenpally,27.6
+2026-08-15,Potato,Bowenpally,27.7
+2026-08-16,Potato,Bowenpally,27.6
+2026-08-17,Potato,Bowenpally,28.0
+2026-08-18,Potato,Bowenpally,28.0
+2026-08-19,Potato,Bowenpally,28.2
+2026-08-20,Potato,Bowenpally,28.5
+2026-08-01,Pumpkin,Bowenpally,19.3
+2026-08-02,Pumpkin,Bowenpally,19.0
+2026-08-03,Pumpkin,Bowenpally,19.0
+2026-08-04,Pumpkin,Bowenpally,19.0
+2026-08-05,Pumpkin,Bowenpally,18.3
+2026-08-06,Pumpkin,Bowenpally,18.2
+2026-08-07,Pumpkin,Bowenpally,18.2
+2026-08-08,Pumpkin,Bowenpally,18.6
+2026-08-09,Pumpkin,Bowenpally,18.5
+2026-08-10,Pumpkin,Bowenpally,18.3
+2026-08-11,Pumpkin,Bowenpally,17.7
+2026-08-12,Pumpkin,Bowenpally,18.0
+2026-08-13,Pumpkin,Bowenpally,17.5
+2026-08-14,Pumpkin,Bowenpally,17.5
+2026-08-15,Pumpkin,Bowenpally,17.3
+2026-08-16,Pumpkin,Bowenpally,17.8
+2026-08-17,Pumpkin,Bowenpally,17.2
+2026-08-18,Pumpkin,Bowenpally,17.1
+2026-08-19,Pumpkin,Bowenpally,17.3
+2026-08-20,Pumpkin,Bowenpally,17.4
+2026-08-01,Cabbage,Bowenpally,25.4
+2026-08-02,Cabbage,Bowenpally,25.0
+2026-08-03,Cabbage,Bowenpally,25.0
+2026-08-04,Cabbage,Bowenpally,24.6
+2026-08-05,Cabbage,Bowenpally,24.1
+2026-08-06,Cabbage,Bowenpally,23.6
+2026-08-07,Cabbage,Bowenpally,23.6
+2026-08-08,Cabbage,Bowenpally,22.7
+2026-08-09,Cabbage,Bowenpally,22.7
+2026-08-10,Cabbage,Bowenpally,22.5
+2026-08-11,Cabbage,Bowenpally,22.1
+2026-08-12,Cabbage,Bowenpally,22.0
+2026-08-13,Cabbage,Bowenpally,21.3
+2026-08-14,Cabbage,Bowenpally,21.1
+2026-08-15,Cabbage,Bowenpally,20.6
+2026-08-16,Cabbage,Bowenpally,20.6
+2026-08-17,Cabbage,Bowenpally,19.8
+2026-08-18,Cabbage,Bowenpally,19.5
+2026-08-19,Cabbage,Bowenpally,18.8
+2026-08-20,Cabbage,Bowenpally,18.4
+2026-08-01,Cauliflower,Bowenpally,28.8
+2026-08-02,Cauliflower,Bowenpally,28.5
+2026-08-03,Cauliflower,Bowenpally,28.3
+2026-08-04,Cauliflower,Bowenpally,27.8
+2026-08-05,Cauliflower,Bowenpally,27.2
+2026-08-06,Cauliflower,Bowenpally,26.9
+2026-08-07,Cauliflower,Bowenpally,26.6
+2026-08-08,Cauliflower,Bowenpally,25.7
+2026-08-09,Cauliflower,Bowenpally,26.1
+2026-08-10,Cauliflower,Bowenpally,25.2
+2026-08-11,Cauliflower,Bowenpally,25.4
+2026-08-12,Cauliflower,Bowenpally,24.3
+2026-08-13,Cauliflower,Bowenpally,24.0
+2026-08-14,Cauliflower,Bowenpally,24.2
+2026-08-15,Cauliflower,Bowenpally,23.0
+2026-08-16,Cauliflower,Bowenpally,22.7
+2026-08-17,Cauliflower,Bowenpally,22.7
+2026-08-18,Cauliflower,Bowenpally,22.1
+2026-08-19,Cauliflower,Bowenpally,22.1
+2026-08-20,Cauliflower,Bowenpally,21.8
+2026-08-01,Cucumber,Bowenpally,22.5
+2026-08-02,Cucumber,Bowenpally,22.1
+2026-08-03,Cucumber,Bowenpally,22.0
+2026-08-04,Cucumber,Bowenpally,21.9
+2026-08-05,Cucumber,Bowenpally,21.4
+2026-08-06,Cucumber,Bowenpally,21.4
+2026-08-07,Cucumber,Bowenpally,20.8
+2026-08-08,Cucumber,Bowenpally,21.0
+2026-08-09,Cucumber,Bowenpally,20.4
+2026-08-10,Cucumber,Bowenpally,20.6
+2026-08-11,Cucumber,Bowenpally,20.3
+2026-08-12,Cucumber,Bowenpally,19.8
+2026-08-13,Cucumber,Bowenpally,19.5
+2026-08-14,Cucumber,Bowenpally,19.6
+2026-08-15,Cucumber,Bowenpally,19.0
+2026-08-16,Cucumber,Bowenpally,18.5
+2026-08-17,Cucumber,Bowenpally,18.4
+2026-08-18,Cucumber,Bowenpally,18.5
+2026-08-19,Cucumber,Bowenpally,17.8
+2026-08-20,Cucumber,Bowenpally,18.0

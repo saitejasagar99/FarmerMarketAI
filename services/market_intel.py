@@ -827,18 +827,54 @@ def calculate_holding_spoilage_and_loss(
         crop_clean = "maize"
     elif "onion" in crop_str:
         crop_clean = "onion"
+    elif "turmeric" in crop_str or "pasupu" in crop_str or "haldi" in crop_str:
+        crop_clean = "turmeric"
+    elif "ginger" in crop_str or "allam" in crop_str:
+        crop_clean = "ginger"
+    elif "garlic" in crop_str or "vellulli" in crop_str:
+        crop_clean = "garlic"
+    elif "brinjal" in crop_str or "eggplant" in crop_str or "vankaya" in crop_str:
+        crop_clean = "brinjal"
+    elif "bhendi" in crop_str or "bhindi" in crop_str or "okra" in crop_str or "ladies finger" in crop_str:
+        crop_clean = "bhendi"
+    elif "bitter gourd" in crop_str or "karela" in crop_str or "kakarakaya" in crop_str:
+        crop_clean = "bitter gourd"
+    elif "bottle gourd" in crop_str or "sorakaya" in crop_str or "lauki" in crop_str:
+        crop_clean = "bottle gourd"
+    elif "cabbage" in crop_str:
+        crop_clean = "cabbage"
+    elif "cauliflower" in crop_str:
+        crop_clean = "cauliflower"
+    elif "cucumber" in crop_str or "dosakaya" in crop_str or "kheera" in crop_str:
+        crop_clean = "cucumber"
+    elif "potato" in crop_str or "alu" in crop_str:
+        crop_clean = "potato"
+    elif "pumpkin" in crop_str:
+        crop_clean = "pumpkin"
+    elif "banana" in crop_str:
+        crop_clean = "banana"
+    elif "papaya" in crop_str:
+        crop_clean = "papaya"
+    elif "guava" in crop_str:
+        crop_clean = "guava"
+    elif "mango" in crop_str:
+        crop_clean = "mango"
+    elif "watermelon" in crop_str:
+        crop_clean = "watermelon"
+    elif "sweet orange" in crop_str or "mosambi" in crop_str:
+        crop_clean = "sweet orange"
     else:
         crop_clean = crop_str
     total_days = max(0, days_since_harvest + wait_days)
 
-    if crop_clean in ["tomato", "brinjal", "bhendi", "bitter gourd"]:
-        # Safe shelf life: 3-5 days at ambient Deccan temperatures
+    if crop_clean in ["tomato", "brinjal", "bhendi", "bitter gourd", "bottle gourd", "cucumber", "cabbage", "cauliflower"]:
+        # Highly perishable fresh vegetables (Safe farm shelf life: 3-5 days at ambient Telangana temperatures)
         if days_since_harvest <= 1:
-            vol_loss_pct = 6.0
-            price_markdown_pct = 10.0
+            vol_loss_pct = 5.0
+            price_markdown_pct = 8.0
             is_severe = False
             verdict = "⚠️ MODERATE HOLDING RISK: Minor moisture loss and grade softening"
-            warning = f"Holding fresh {crop_clean} for {wait_days} days causes ~6% weight loss and minor softening."
+            warning = f"Holding fresh {crop_clean} for {wait_days} days causes ~5% weight loss and minor softening."
         elif 2 <= days_since_harvest <= 3:
             vol_loss_pct = 22.0
             price_markdown_pct = 25.0
@@ -846,25 +882,46 @@ def calculate_holding_spoilage_and_loss(
             verdict = "⚠️ HIGH SPOILAGE RISK: Rapid soft rot onset"
             warning = f"{crop_clean.title()} at {days_since_harvest} days reaches {total_days} days. ~22% rot discard; remainder drops to Grade C."
         else:
-            # Already 4+ days old (e.g. 11 days)! Holding 3 more days leads to catastrophic rot
-            vol_loss_pct = 85.0
+            # Already 4+ days old! Holding 3 more days leads to severe decay
+            vol_loss_pct = 80.0
             price_markdown_pct = 40.0
             is_severe = True
-            verdict = "🚨 CATASTROPHIC SPOILAGE: 85%+ Rot & Discard (Severe Net Deficit)"
+            verdict = "🚨 CATASTROPHIC SPOILAGE: 80%+ Rot & Discard (Severe Net Deficit)"
             warning = (
                 f"{crop_clean.title()} is already {days_since_harvest} days post-harvest (shelf life: 3-5 days). "
                 f"Holding for {wait_days} more days causes near-total liquefaction and mold decay. "
-                f"85% of volume will be discarded as unmarketable mush. Waiting guarantees a severe financial loss!"
+                f"80%+ of volume will be discarded as unmarketable. Waiting guarantees a severe financial loss!"
             )
+
+    elif crop_clean in ["banana", "papaya", "guava", "mango", "watermelon", "sweet orange"]:
+        # Fresh fruit: rapid ripening and bruising
+        if days_since_harvest <= 1:
+            vol_loss_pct = 4.0
+            price_markdown_pct = 5.0
+            is_severe = False
+            verdict = "⚠️ MODERATE HOLDING RISK: Moisture shrinkage and rapid ripening"
+            warning = f"Fresh {crop_clean} ripens quickly over {wait_days} days. Monitor firmness."
+        elif 2 <= days_since_harvest <= 4:
+            vol_loss_pct = 25.0
+            price_markdown_pct = 30.0
+            is_severe = True
+            verdict = "⚠️ HIGH SPOILAGE RISK: Over-ripening and bruising"
+            warning = f"{crop_clean.title()} at {days_since_harvest} days reaches over-ripe state. ~25% rot and bruise discard."
+        else:
+            vol_loss_pct = 75.0
+            price_markdown_pct = 45.0
+            is_severe = True
+            verdict = "🚨 SEVERE SPOILAGE: Unmarketable fruit rot"
+            warning = f"{crop_clean.title()} stored for {days_since_harvest} days suffers skin blackening and decay. ~75% loss."
 
     elif crop_clean in ["chilli"]:
         # Safe shelf life: 5-6 days
         if days_since_harvest <= 2:
-            vol_loss_pct = 5.0
+            vol_loss_pct = 4.0
             price_markdown_pct = 5.0
             is_severe = False
             verdict = "⚠️ MINOR SHRINKAGE: Moisture loss expected"
-            warning = f"Chillies will lose ~5% moisture weight and color gloss over {wait_days} days."
+            warning = f"Chillies will lose ~4% moisture weight and color gloss over {wait_days} days."
         elif 3 <= days_since_harvest <= 5:
             vol_loss_pct = 25.0
             price_markdown_pct = 20.0
@@ -878,20 +935,20 @@ def calculate_holding_spoilage_and_loss(
             verdict = "🚨 SEVERE DRYING & QUALITY DECAY"
             warning = f"Chillies stored for {days_since_harvest} days lose color, rot at stem, and suffer ~70% loss."
 
-    elif crop_clean in ["onion", "garlic", "ginger", "turmeric"]:
-        # Safe shelf life: 25-45 days
+    elif crop_clean in ["onion", "garlic", "ginger", "turmeric", "potato", "pumpkin"]:
+        # Semi-durable bulbs/rhizomes: Safe shelf life: 25-45 days
         if days_since_harvest <= 7:
-            vol_loss_pct = 1.0
+            vol_loss_pct = 0.0
             price_markdown_pct = 0.0
             is_severe = False
             verdict = "✅ LOW HOLDING RISK: Safe in dry ventilated storage"
-            warning = f"Freshly cured {crop_clean} stores very well. Waiting {wait_days} days causes minimal weight loss (<1%)."
+            warning = f"Freshly cured {crop_clean} stores very well. Waiting {wait_days} days causes zero rot."
         elif 8 <= days_since_harvest <= 25:
-            vol_loss_pct = 4.0
-            price_markdown_pct = 3.0
+            vol_loss_pct = 3.0
+            price_markdown_pct = 2.0
             is_severe = False
-            verdict = "⚠️ MODERATE STORAGE RISK: Monitor for sprouting"
-            warning = f"Stored {crop_clean} at {days_since_harvest} days experiences ~4% moisture shrinkage."
+            verdict = "⚠️ MODERATE STORAGE RISK: Minor shrinkage"
+            warning = f"Stored {crop_clean} at {days_since_harvest} days experiences ~3% moisture shrinkage."
         else:
             vol_loss_pct = 25.0
             price_markdown_pct = 20.0
@@ -900,46 +957,46 @@ def calculate_holding_spoilage_and_loss(
             warning = f"Extended storage ({days_since_harvest} days) risks internal sprouting and neck rot. ~25% loss."
 
     elif crop_clean in ["maize", "corn", "jowar", "bajra", "ragi", "red gram", "bengal gram", "green gram", "black gram", "soybean", "sunflower"]:
-        # Dry cereal / pulse / oilseed grain: Safe farm storage up to 60-75 days
-        if days_since_harvest <= 20:
-            vol_loss_pct = 0.5
+        # Dry cereal / pulse / oilseed grain: Safe farm storage up to 60-75 days (ZERO rot in 3 days)
+        if days_since_harvest <= 30:
+            vol_loss_pct = 0.0
             price_markdown_pct = 0.0
             is_severe = False
             verdict = "✅ NEGLIGIBLE GRAIN LOSS: Optimum dry storage"
-            warning = f"Dry {crop_clean} grains (<13% moisture) are highly stable over {wait_days} days."
-        elif 21 <= days_since_harvest <= 60:
-            vol_loss_pct = 2.0
-            price_markdown_pct = 3.0
+            warning = f"Dry {crop_clean} grains (<13% moisture) have zero spoilage risk over {wait_days} days."
+        elif 31 <= days_since_harvest <= 60:
+            vol_loss_pct = 1.0
+            price_markdown_pct = 0.0
             is_severe = False
             verdict = "✅ SAFE STORAGE GRAIN: Monitor moisture"
-            warning = f"{crop_clean.title()} at {days_since_harvest} days has minimal weight loss (~2%) in standard farm sacks."
+            warning = f"{crop_clean.title()} at {days_since_harvest} days has minimal weight variation (~1%) in standard farm sacks."
         else:
-            vol_loss_pct = 12.0
-            price_markdown_pct = 15.0
+            vol_loss_pct = 10.0
+            price_markdown_pct = 10.0
             is_severe = True
             verdict = "⚠️ STORAGE WEEVIL & MOLD RISK"
             warning = f"{crop_clean.title()} stored for {days_since_harvest} days faces storage weevil infestation and grain breakage."
 
-    elif crop_clean in ["cotton", "kapas", "groundnut", "sesamum", "castor"]:
-        # Fiber crop: Safe storage up to 90-100 days if kept dry
+    elif crop_clean in ["cotton", "kapas", "groundnut", "sesamum", "sesame", "castor"]:
+        # Fiber & dry oilseed: Safe storage up to 90-100 days if kept dry
         if days_since_harvest <= 30:
             vol_loss_pct = 0.0
             price_markdown_pct = 0.0
             is_severe = False
             verdict = "✅ PRIME LINT QUALITY: Zero spoilage risk"
-            warning = f"Raw seed cotton (kapas) retains full fiber luster and grade over {wait_days} days."
+            warning = f"Raw seed cotton / oilseed retains full fiber luster and grade over {wait_days} days."
         elif 31 <= days_since_harvest <= 90:
             vol_loss_pct = 1.0
-            price_markdown_pct = 2.0
+            price_markdown_pct = 0.0
             is_severe = False
-            verdict = "✅ STABLE LINT STORAGE: Protect from ambient humidity"
-            warning = f"Stored cotton at {days_since_harvest} days maintains good commercial ginning quality."
+            verdict = "✅ STABLE STORAGE: Protect from ambient humidity"
+            warning = f"Stored {crop_clean} at {days_since_harvest} days maintains good commercial quality."
         else:
             vol_loss_pct = 8.0
             price_markdown_pct = 12.0
             is_severe = True
-            verdict = "⚠️ FIBER DISCOLORATION & TRASH PENALTY"
-            warning = f"Cotton stored for {days_since_harvest} days suffers fiber dulling, moisture staining, and price discounts."
+            verdict = "⚠️ QUALITY PENALTY & DISCOLORATION"
+            warning = f"{crop_clean.title()} stored for {days_since_harvest} days suffers moisture staining and price discounts."
 
     elif crop_clean in ["rice", "paddy"]:
         # Staple grain: Extremely durable storage (180+ days)
@@ -950,7 +1007,7 @@ def calculate_holding_spoilage_and_loss(
             verdict = "✅ NEGLIGIBLE SPOILAGE RISK: Grains store safely"
             warning = f"Dry paddy/rice has zero rot risk over {wait_days} days in standard warehouse storage."
         elif 61 <= days_since_harvest <= 180:
-            vol_loss_pct = 1.0
+            vol_loss_pct = 0.5
             price_markdown_pct = 0.0
             is_severe = False
             verdict = "✅ AGED GRAIN QUALITY: Enhanced cooking characteristics"
@@ -965,23 +1022,23 @@ def calculate_holding_spoilage_and_loss(
     else:
         # Generic agricultural fallback
         if days_since_harvest <= 2:
-            vol_loss_pct = 5.0
-            price_markdown_pct = 5.0
+            vol_loss_pct = 2.0
+            price_markdown_pct = 2.0
             is_severe = False
             verdict = "⚠️ NORMAL POST-HARVEST SHRINKAGE"
-            warning = f"Normal moisture loss of ~5% over {wait_days} days."
+            warning = f"Normal moisture loss of ~2% over {wait_days} days."
         elif 3 <= days_since_harvest <= 6:
-            vol_loss_pct = 20.0
+            vol_loss_pct = 15.0
             price_markdown_pct = 15.0
             is_severe = True
             verdict = "⚠️ ELEVATED SPOILAGE RISK"
-            warning = f"Noticeable quality deterioration and ~20% loss over {wait_days} days."
+            warning = f"Noticeable quality deterioration and ~15% loss over {wait_days} days."
         else:
-            vol_loss_pct = 60.0
+            vol_loss_pct = 50.0
             price_markdown_pct = 30.0
             is_severe = True
             verdict = "🚨 SEVERE AGING LOSS"
-            warning = f"Produce harvested {days_since_harvest} days ago will experience heavy decay (~60% loss)."
+            warning = f"Produce harvested {days_since_harvest} days ago will experience heavy decay (~50% loss)."
 
     salable_pct = max(0.0, 100.0 - vol_loss_pct)
 
@@ -991,6 +1048,7 @@ def calculate_holding_spoilage_and_loss(
         "quality_markdown_pct": round(price_markdown_pct, 1),
         "is_severe_spoilage": is_severe,
         "holding_verdict": verdict,
+        "verdict": verdict,
         "holding_warning": warning,
         "total_days_post_harvest": total_days
     }
