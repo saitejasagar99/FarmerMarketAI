@@ -913,15 +913,18 @@ def render_degradation_matrix_html(active_crop: str = "Tomato", days_elapsed: in
         "Rice":   ["Grade A", "Grade A", "Grade A", "Grade A", "Grade A", "Grade B", "Grade B"]
     }
 
+    # Normalize active_crop safely to handle None, empty strings, etc.
+    active_crop_clean = (active_crop or "").strip()
+
     # If active crop is an expanded crop not in base 6, dynamically evaluate its degradation curve
-    active_canonical = next((c for c in matrix.keys() if c.lower() == active_crop.lower()), None)
-    if not active_canonical and active_crop:
-        crops.append(active_crop)
+    active_canonical = next((c for c in matrix.keys() if active_crop_clean and c.lower() == active_crop_clean.lower()), None)
+    if not active_canonical and active_crop_clean:
+        crops.append(active_crop_clean)
         ref_today = datetime.date.today()
         bracket_days = [0, 2, 5, 11, 25, 70, 120]
-        matrix[active_crop] = [
+        matrix[active_crop_clean] = [
             evaluate_crop_quality_from_harvest_date(
-                active_crop,
+                active_crop_clean,
                 ref_today - datetime.timedelta(days=d),
                 ref_today
             )["quality"]
@@ -932,14 +935,14 @@ def render_degradation_matrix_html(active_crop: str = "Tomato", days_elapsed: in
     html.append('<table class="rzp-matrix-table">')
     html.append('<thead><tr><th class="first-col">Crop</th>')
     for i, label in enumerate(bracket_labels):
-        if i == active_col:
+        if i == active_col and active_crop_clean:
             html.append(f'<th class="active-col-header">{label} <span class="active-tag">📍 Your Age (~{days_elapsed}d)</span></th>')
         else:
             html.append(f'<th>{label}</th>')
     html.append('</tr></thead><tbody>')
 
     for c in crops:
-        is_active_crop = (c.lower() == active_crop.lower())
+        is_active_crop = bool(active_crop_clean and c.lower() == active_crop_clean.lower())
         row_cls = ' class="active-crop-row"' if is_active_crop else ''
         crop_display = f'⭐ <strong>{c}</strong> <span class="selected-chip">Selected</span>' if is_active_crop else f'<strong>{c}</strong>'
         html.append(f'<tr{row_cls}>')
@@ -2235,7 +2238,7 @@ if current_analysis and current_analysis.get("recommendation_data"):
             model_r2 = 0
 
         # Derived prediction & presentation variables
-        conf_key = f"confidence_{prediction_confidence.lower()}"
+        conf_key = f"confidence_{(prediction_confidence or 'unavailable').lower()}"
         localized_confidence = t(conf_key, lang)
         percentage_change = (
             ((predicted_price - current_price) / current_price) * 100
@@ -2518,7 +2521,7 @@ if current_analysis and current_analysis.get("recommendation_data"):
             sm_net = float(suggested_small_market.get("small_batch_net_profit", sm_price * quantity_value - 30.0))
             sm_gmaps = suggested_small_market.get("gmaps_url", "")
 
-            is_same_as_best = (sm_mkt.strip().lower() == best_market.strip().lower())
+            is_same_as_best = ((sm_mkt or "").strip().lower() == (best_market or "").strip().lower())
             
             raw_sm_title = t("small_market_card_title", lang)
             clean_sm_title = raw_sm_title.replace("🏪", "").strip()
@@ -3646,16 +3649,18 @@ else:
     # ========================================================
 
     with st.expander(f"🌾 {t('educational_matrix_title', lang)}", expanded=True):
-        st.caption(f"{t('matrix_subtitle', lang)} • Active: {crop}")
+        active_display = crop if crop else (t('lbl_none_selected', lang) if t('lbl_none_selected', lang) != 'lbl_none_selected' else "None (Select Crop in Form)")
+        st.caption(f"{t('matrix_subtitle', lang)} • Active: {active_display}")
 
         st.markdown(
             render_degradation_matrix_html(crop, days_diff),
             unsafe_allow_html=True
         )
 
+        crop_highlight = f"selected crop (**{crop}**)" if crop else "crop"
         st.info(
             f"💡 **Scientific Degradation Modeling:** Rows show each crop's degradation progression from harvest day (0 Days) up to 120 Days. "
-            f"The table dynamically highlights your currently selected crop (**{crop}**) and elapsed days (**~{days_diff}d**). "
+            f"The table dynamically highlights your currently {crop_highlight} and elapsed days (**~{days_diff or 0}d**). "
             f"Notice how highly perishable crops like **Tomato** drop to Grade C rapidly, incurring severe rot discards, "
             f"whereas durable grains like **Maize**, **Cotton**, and **Rice** retain Grade A for weeks in storage."
         )
